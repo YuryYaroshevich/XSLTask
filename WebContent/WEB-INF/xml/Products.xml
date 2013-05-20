@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xslt" href="Products.xslt"?>
 <pr:products xmlns:pr="http://www.epam.com/Products"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.epam.com/Products Products.xsd">

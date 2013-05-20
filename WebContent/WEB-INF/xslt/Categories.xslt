@@ -8,7 +8,7 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title></title>
+				<title>Categories</title>
 			</head>
 			<body>
 				<h1>Categories</h1>
@@ -22,7 +22,7 @@
 	<!-- match the <category> element -->
 	<xsl:template match="category">
 		<li>
-			<a href="viewCategory?name={@name}">
+			<a href="controller?command=SUBCATEGORIES;category={@name}">
 				<xsl:value-of select="@name" />
 			</a>
 		</li>

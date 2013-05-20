@@ -3,9 +3,9 @@ package com.epam.xsl.exception;
 public abstract class XSLTaskException extends Exception {
 	private static final long serialVersionUID = -9176692414785303498L;
 	
-	protected Exception hidden;
+	protected Throwable hidden;
 
-	public XSLTaskException(Exception e) {
+	public XSLTaskException(Throwable e) {
 		super(e);
 		hidden = e;
 	}

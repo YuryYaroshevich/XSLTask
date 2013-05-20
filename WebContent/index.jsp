@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>XMLParsers</title>
+<title>Index</title>
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/xml/Products.xml" />
+	<jsp:forward page="controller" />
 </body>
 </html>
