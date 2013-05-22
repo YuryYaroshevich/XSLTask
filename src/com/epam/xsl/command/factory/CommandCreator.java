@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.NoCommand;
+import com.epam.xsl.command.SubcategoriesCommand;
 
 
 public class CommandCreator {
@@ -17,7 +18,8 @@ public class CommandCreator {
 		CommandEnum commandEnum = getCommandEnum((String) request
 				.getParameter(ATTR_NAME_COMMAND));
 		switch (commandEnum) {
-
+		case SUBCATEGORIES:
+			return new SubcategoriesCommand();
 		default:
 			return new NoCommand();
 		}

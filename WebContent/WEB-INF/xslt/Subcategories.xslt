@@ -5,14 +5,15 @@
 
 	<!-- the document root -->
 	<xsl:template match="/">
+	    <xsl:param name="category" />
 		<html>
 			<head>
-				<title>Subcategories</title>
+				<title>Subcategories of CATEGORY</title>
 			</head>
 			<body>
-				<h1>Subcategoriess</h1>
+				<h1>Subcategoriess of CATEGORY</h1>
 				<ul>
-					<xsl:apply-templates select="category/subcategory" />
+					<xsl:apply-templates select="category[@name=$category]/subcategory" />
 				</ul>
 			</body>
 		</html>
@@ -20,7 +21,6 @@
 
 	<!-- match the <subcategory> element -->
 	<xsl:template match="subcategory">
-	    
 		<li>
 			<a href="controller?command=PRODUCTS;subcategory={@name}">
 				<xsl:value-of select="@name" />

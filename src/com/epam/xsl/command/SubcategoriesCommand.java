@@ -21,6 +21,7 @@ public class SubcategoriesCommand extends Command {
 			Transformer transf = transformerFactory.newTransformer(styleSource);
 			transf.setParameter(PARAM_CATEGORY,
 					request.getParameter(PARAM_CATEGORY));
+			System.out.println(request.getParameter(PARAM_CATEGORY));
 			return transf;
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();

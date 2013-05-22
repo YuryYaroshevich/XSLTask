@@ -56,6 +56,7 @@ public class Controller extends HttpServlet {
 			Document document = builder.parse(xml);
             // get appropriate transformer
 			Command command = CommandCreator.createCommand(request);
+			System.out.println(command);
 			Transformer transformer = command.execute(request, response);
 			// transformation
 			DOMSource source = new DOMSource(document);
