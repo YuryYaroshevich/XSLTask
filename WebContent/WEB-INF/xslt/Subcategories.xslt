@@ -10,9 +10,9 @@
 				<title>Subcategories</title>
 			</head>
 			<body>
-				<h1>Subcategory</h1>
+				<h1>Subcategoriess</h1>
 				<ul>
-					<xsl:apply-templates select="categorysubcategory" />
+					<xsl:apply-templates select="category/subcategory" />
 				</ul>
 			</body>
 		</html>
@@ -20,6 +20,7 @@
 
 	<!-- match the <subcategory> element -->
 	<xsl:template match="subcategory">
+	    
 		<li>
 			<a href="controller?command=PRODUCTS;subcategory={@name}">
 				<xsl:value-of select="@name" />

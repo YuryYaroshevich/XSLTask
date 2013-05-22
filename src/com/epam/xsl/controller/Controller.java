@@ -30,7 +30,10 @@ import com.epam.xsl.command.factory.CommandCreator;
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 7688907932488576018L;
 
-	private static DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+	private static final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+			.newInstance();
+
+	private static final TransformerFactory transformerFactory = TransformerFactory
 			.newInstance();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,18 +48,16 @@ public class Controller extends HttpServlet {
 
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Command command = CommandCreator.createCommand(request);
-		File xslt = command.execute(request, response);
 		try {
+			// build document
 			File xml = new File(
 					"C:/workspace/XSLTask/WebContent/WEB-INF/xml/Products.xml");
 			DocumentBuilder builder = docBuilderFactory.newDocumentBuilder();
 			Document document = builder.parse(xml);
-
-			TransformerFactory tFactory = TransformerFactory.newInstance();
-			StreamSource stylesource = new StreamSource(xslt);
-			Transformer transformer = tFactory.newTransformer(stylesource);
-
+            // get appropriate transformer
+			Command command = CommandCreator.createCommand(request);
+			Transformer transformer = command.execute(request, response);
+			// transformation
 			DOMSource source = new DOMSource(document);
 			StreamResult result = new StreamResult(response.getWriter());
 			transformer.transform(source, result);
@@ -68,9 +69,9 @@ public class Controller extends HttpServlet {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
 		} catch (TransformerException e) {
+			e.printStackTrace();
+		} catch (CommandException e) {
 			e.printStackTrace();
 		}
 	}
