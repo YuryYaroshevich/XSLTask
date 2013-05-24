@@ -4,8 +4,8 @@
 
 	<xsl:output method="html" />
 
-	<!-- match the document root -->
-	<xsl:template match="/">
+	<!-- match the <products> element -->
+	<xsl:template match="/products">
 		<html>
 			<head>
 				<title>Categories</title>
@@ -13,7 +13,7 @@
 			<body>
 				<h1>Categories</h1>
 				<ul>
-					<xsl:apply-templates select="products/category" />
+					<xsl:apply-templates select="category" />
 				</ul>
 			</body>
 		</html>
@@ -22,8 +22,9 @@
 	<!-- match the <category> element -->
 	<xsl:template match="category">
 		<li>
-			<a href="controller?command=SUBCATEGORIES;category={@name}">
+			<a href="controller?command=SUBCATEGORIES&amp;categoryName={@name}">
 				<xsl:value-of select="@name" />
+				(<xsl:value-of select="count(subcategory)" />)
 			</a>
 		</li>
 	</xsl:template>

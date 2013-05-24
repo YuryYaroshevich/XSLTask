@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.NoCommand;
-import com.epam.xsl.command.SubcategoriesCommand;
+import com.epam.xsl.command.getentity.GoodsCommand;
+import com.epam.xsl.command.getentity.SubcategoriesCommand;
 
 
 public class CommandCreator {
-
 	private static final String ATTR_NAME_COMMAND = "command";
 
 	private CommandCreator() {
@@ -20,6 +20,8 @@ public class CommandCreator {
 		switch (commandEnum) {
 		case SUBCATEGORIES:
 			return new SubcategoriesCommand();
+		case GOODS:
+			return new GoodsCommand();
 		default:
 			return new NoCommand();
 		}

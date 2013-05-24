@@ -39,5 +39,23 @@
 				<pr:price>40</pr:price>
 			</pr:good>
 		</pr:subcategory>
+		<pr:subcategory name="ice-cream with jem">
+			<pr:good>
+				<pr:producer>Cold fruit</pr:producer>
+				<pr:model>UI320</pr:model>
+				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
+				<pr:color>yellow</pr:color>
+				<pr:price>45</pr:price>
+			</pr:good>
+		</pr:subcategory>
+		<pr:subcategory name="chocolat ice-cream">
+			<pr:good>
+				<pr:producer>Chocolate ice</pr:producer>
+				<pr:model>NM456</pr:model>
+				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
+				<pr:color>brown</pr:color>
+				<pr:price>52</pr:price>
+			</pr:good>
+		</pr:subcategory>
 	</pr:category>
 </pr:products>
