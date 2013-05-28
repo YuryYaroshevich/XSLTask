@@ -2,15 +2,12 @@ package com.epam.xsl.command.getentity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.transform.Source;
-import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.command.util.FileURLContainer;
+import com.epam.xsl.command.util.TemplatesContainer;
 
 public class SubcategoriesCommand extends Command {
 	private static final String PARAM_CATEGORY_NAME = "categoryName";
@@ -19,10 +16,8 @@ public class SubcategoriesCommand extends Command {
 	public Transformer execute(HttpServletRequest request,
 			HttpServletResponse response) throws CommandException {
 		try {
-			Source styleSource = new StreamSource(
-					FileURLContainer.SUBCATEGORIES_XSLT);
-			Templates templates = transformerFactory.newTemplates(styleSource);
-			Transformer transf = templates.newTransformer();
+			TemplatesContainer container = TemplatesContainer.getInstance();
+			Transformer transf = container.SUBCATEGORIES_XSLT.newTransformer();
 			transf.setParameter(PARAM_CATEGORY_NAME,
 					request.getParameter(PARAM_CATEGORY_NAME));
 			return transf;
