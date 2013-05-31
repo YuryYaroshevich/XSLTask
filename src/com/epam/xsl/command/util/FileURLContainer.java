@@ -1,15 +1,20 @@
 package com.epam.xsl.command.util;
 
+import java.util.ResourceBundle;
+
 public class FileURLContainer {
+	private static final ResourceBundle bundle = ResourceBundle
+			.getBundle("com.resource.fileurl");
+	
+	public static final String PRODUCTS_XML = "products.xml";
+	public static final String CATEGORIES_XSLT = "categories.xslt";
+	public static final String SUBCATEGORIES_XSLT = "subcategories.xslt";
+	public static final String GOODS_XSLT = "goods.xslt";
+
 	private FileURLContainer() {
 	}
-	
-	public static final String PRODUCTS_XML =
-			"C:/workspace/XSLTask/WebContent/WEB-INF/xml/Products.xml";
-	public static final String CATEGORIES_XSLT =
-			"C:/workspace/XSLTask/WebContent/WEB-INF/xslt/products/Categories.xslt";
-	public static final String SUBCATEGORIES_XSLT =
-			"C:/workspace/XSLTask/WebContent/WEB-INF/xslt/products/Subcategories.xslt";
-	public static final String GOODS_XSLT =
-			"C:/workspace/XSLTask/WebContent/WEB-INF/xslt/products/Goods.xslt";
+
+	public static String getFileURL(String key) {
+		return bundle.getString(key);
+	}
 }

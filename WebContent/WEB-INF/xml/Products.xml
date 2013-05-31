@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pr:products xmlns:pr="http://www.epam.com/Products"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.epam.com/Products Products.xsd">
+	xsi:schemaLocation="http://www.epam.com/Products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>

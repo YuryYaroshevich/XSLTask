@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.factory.CommandCreator;
-import com.epam.xsl.command.util.FileURLContainer;
+import static com.epam.xsl.command.util.FileURLContainer.*;
 
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 7688907932488576018L;
@@ -45,7 +45,7 @@ public class Controller extends HttpServlet {
 		try {
 			// build document
 			DocumentBuilder builder = docBuilderFactory.newDocumentBuilder();
-			Document document = builder.parse(FileURLContainer.PRODUCTS_XML);
+			Document document = builder.parse(getFileURL(PRODUCTS_XML));
 			// get appropriate transformer
 			Command command = CommandCreator.createCommand(request);
 			Transformer transformer = command.execute(request, response);

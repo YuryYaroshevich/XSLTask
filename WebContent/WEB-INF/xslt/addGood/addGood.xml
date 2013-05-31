@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<add-good>
+	<producer />
+	<model />
+	<date-of-issue />
+	<color />
+	<not-in-stock />
+</add-good>
