@@ -10,7 +10,7 @@ import com.epam.xsl.command.exception.CommandException;
 import static com.epam.xsl.command.util.FileURLContainer.*;
 import com.epam.xsl.command.util.TemplatesCache;
 
-public class NoCommand extends Command {
+public final class NoCommand implements Command {
 	@Override
 	public Transformer execute(HttpServletRequest request,
 			HttpServletResponse response) throws CommandException {

@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.NoCommand;
+import com.epam.xsl.command.addgood.AddGoodCommand;
+import com.epam.xsl.command.addgood.SaveGoodCommand;
 import com.epam.xsl.command.getentity.GoodsCommand;
 import com.epam.xsl.command.getentity.SubcategoriesCommand;
 
 
-public class CommandCreator {
+public final class CommandCreator {
 	private static final String ATTR_NAME_COMMAND = "command";
 
 	private CommandCreator() {
@@ -22,6 +24,10 @@ public class CommandCreator {
 			return new SubcategoriesCommand();
 		case GOODS:
 			return new GoodsCommand();
+		case ADD_GOOD:
+			return new AddGoodCommand();
+		case SAVE_GOOD: 
+			return new SaveGoodCommand();
 		default:
 			return new NoCommand();
 		}

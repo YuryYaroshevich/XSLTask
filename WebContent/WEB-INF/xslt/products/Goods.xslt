@@ -4,6 +4,7 @@
 	<xsl:output method="html" />
 
 	<xsl:template match="/products">
+		<xsl:param name="categoryName" />
 		<xsl:param name="subcategoryName" />
 		<html>
 			<head>
@@ -18,9 +19,12 @@
 					<xsl:value-of select="$subcategoryName" />
 				</h1>
 				<xsl:apply-templates
-					select="category/subcategory[@name=$subcategoryName]/good" />
+					select="category[@name=$categoryName]/
+					        subcategory[@name=$subcategoryName]/good" />
 				<form action="controller">
-					<input type="hidden" name="command" value="ADD_PRODUCT" />
+					<input type="hidden" name="command" value="ADD_GOOD" />
+					<input type="hidden" name="categoryName" value="{$categoryName}" />
+					<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />
 					<input type="submit" value="ADD PRODUCT" />
 				</form>
 			</body>

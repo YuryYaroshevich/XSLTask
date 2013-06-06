@@ -4,8 +4,8 @@
 	<xsl:output method="html" />
 
 	<!-- match <products> element -->
-	<xsl:template match="/products">
-		<xsl:param name="categoryName" />
+	<xsl:param name="categoryName" />
+	<xsl:template match="/products">		
 		<html>
 			<head>
 				<title>
@@ -28,7 +28,7 @@
 	<!-- match the <subcategory> element -->
 	<xsl:template match="subcategory">
 		<li>
-			<a href="controller?command=GOODS&amp;subcategoryName={@name}">
+			<a href="controller?command=GOODS&amp;categoryName={$categoryName}&amp;subcategoryName={@name}">
 				<xsl:value-of select="@name" />
 				(<xsl:value-of select="count(good)" />)
 			</a>

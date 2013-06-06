@@ -11,8 +11,10 @@ import com.epam.xsl.command.exception.CommandException;
 import static com.epam.xsl.command.util.FileURLContainer.*;
 import com.epam.xsl.command.util.TemplatesCache;
 
-public class GoodsCommand extends Command {
-	private static final String PARAM_SUBCATEGORY_NAME = "subcategoryName";
+public final class GoodsCommand implements Command {
+	// parameter names
+	private static final String SUBCATEGORY_NAME = "subcategoryName";
+	private static final String CATEGORY_NAME = "categoryName";
 
 	@Override
 	public Transformer execute(HttpServletRequest request,
@@ -21,8 +23,11 @@ public class GoodsCommand extends Command {
 			Templates goods = TemplatesCache
 					.getTemplates(getFileURL(GOODS_XSLT));
 			Transformer transf = goods.newTransformer();
-			transf.setParameter(PARAM_SUBCATEGORY_NAME,
-					request.getParameter(PARAM_SUBCATEGORY_NAME));
+			// sets parameters
+			transf.setParameter(SUBCATEGORY_NAME,
+					request.getParameter(SUBCATEGORY_NAME));
+			transf.setParameter(CATEGORY_NAME,
+					request.getParameter(CATEGORY_NAME));
 			return transf;
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();

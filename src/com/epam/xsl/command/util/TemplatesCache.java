@@ -41,13 +41,14 @@ public final class TemplatesCache {
 		return templ.templates;
 	}
 
-	private static TemplatesWrapper newEntryInCache(long lastModified, String key)
-			throws TransformerConfigurationException {
+	private static TemplatesWrapper newEntryInCache(long lastModified,
+			String key) throws TransformerConfigurationException {
 		lock.lock();
 		try {
 			TemplatesWrapper templWrapper = cache.get(key);
-			// check if other thread updated entry in a cache
-			if (lastModified == templWrapper.lastModified) {
+			// check if other thread has updated entry in a cache already
+			if (templWrapper != null
+					&& lastModified == templWrapper.lastModified) {
 				return templWrapper;
 			}
 			// if didn't, put new entry in a cache

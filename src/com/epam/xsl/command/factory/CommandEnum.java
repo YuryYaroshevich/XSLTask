@@ -1,6 +1,7 @@
 package com.epam.xsl.command.factory;
 
 
-public enum CommandEnum {
-	NO_COMMAND, SUBCATEGORIES, GOODS, ADD_GOOD
+enum CommandEnum {
+	NO_COMMAND, SUBCATEGORIES, GOODS, ADD_GOOD,
+	SAVE_GOOD
 }
