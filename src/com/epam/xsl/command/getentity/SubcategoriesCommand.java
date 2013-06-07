@@ -1,14 +1,15 @@
 package com.epam.xsl.command.getentity;
 
+import static com.epam.xsl.command.util.FileURLContainer.SUBCATEGORIES_XSLT;
+import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
-import static com.epam.xsl.command.util.FileURLContainer.*;
 import com.epam.xsl.command.util.TemplatesCache;
 
 public final class SubcategoriesCommand implements Command {
@@ -16,8 +17,8 @@ public final class SubcategoriesCommand implements Command {
 	private static final String CATEGORY_NAME = "categoryName";
 
 	@Override
-	public Transformer execute(HttpServletRequest request,
-			HttpServletResponse response) throws CommandException {
+	public Transformer execute(HttpServletRequest request)
+			throws CommandException {
 		try {
 			Templates subcategories = TemplatesCache
 					.getTemplates(getFileURL(SUBCATEGORIES_XSLT));
