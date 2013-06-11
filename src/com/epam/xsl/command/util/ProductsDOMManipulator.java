@@ -12,7 +12,7 @@ final class ProductsDOMManipulator {
 	private ProductsDOMManipulator() {
 	}
 
-	public static Document addGoodToDocument(String categName,
+	public static void addGoodToDocument(String categName,
 			String subcategName, Good good, Document document) {
 		NodeList categNodes = document.getElementsByTagName(CATEGORY_ELEM);
 		for (int ci = 0; ci < categNodes.getLength(); ci++) {
@@ -26,7 +26,6 @@ final class ProductsDOMManipulator {
 				break;
 			}
 		}
-		return document;
 	}
 	
 	private static void addGoodToAppropriateSubcateg(Document document,

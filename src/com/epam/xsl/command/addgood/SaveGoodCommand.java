@@ -1,7 +1,7 @@
 package com.epam.xsl.command.addgood;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.transform.Transformer;
+import javax.servlet.http.HttpServletResponse;
 
 import org.w3c.dom.Document;
 
@@ -22,7 +22,7 @@ public final class SaveGoodCommand implements Command {
 	private static final String NOT_IN_STOCK = "notInStock";
 
 	@Override
-	public Transformer execute(HttpServletRequest request)
+	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws CommandException {
 		try {
 			String categoryName = request.getParameter(CATEGORY_NAME);
@@ -30,21 +30,20 @@ public final class SaveGoodCommand implements Command {
 			Good good = buildGood(request);
 			Document document = XMLWrapper.writeToXML(categoryName,
 					subcategoryName, good);
-			return null;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
 		}
 	}
-	
+
 	private static Good buildGood(HttpServletRequest req) {
 		Good good = new Good();
 		good.setProducer(req.getParameter(PRODUCER));
 		good.setModel(req.getParameter(MODEL));
 		good.setDateOfIssue(req.getParameter(DATE_OF_ISSUE));
 		good.setColor(req.getParameter(COLOR));
-		boolean notInStock = Boolean
-				.valueOf(req.getParameter(NOT_IN_STOCK));
+		boolean notInStock = Boolean.valueOf(req.getParameter(NOT_IN_STOCK));
 		if (notInStock) {
 			good.markAsNotInStock();
 		} else {

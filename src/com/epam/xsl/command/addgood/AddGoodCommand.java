@@ -4,6 +4,7 @@ import static com.epam.xsl.command.util.FileURLContainer.ADD_GOOD_XSLT;
 import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -18,8 +19,8 @@ public final class AddGoodCommand implements Command {
 	private static final String SUBCATEGORY_NAME = "subcategoryName";
 
 	@Override
-	public Transformer execute(HttpServletRequest request)
-			throws CommandException {
+	public void execute(HttpServletRequest request,
+			HttpServletResponse response) throws CommandException {
 		try {
 			Templates addGood = TemplatesCache
 					.getTemplates(getFileURL(ADD_GOOD_XSLT));
@@ -29,7 +30,7 @@ public final class AddGoodCommand implements Command {
 					request.getParameter(CATEGORY_NAME));
 			transf.setParameter(SUBCATEGORY_NAME,
 					request.getParameter(SUBCATEGORY_NAME));
-			return transf;
+			//return transf;
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
 			throw new CommandException(e);

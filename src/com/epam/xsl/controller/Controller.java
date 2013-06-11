@@ -46,11 +46,11 @@ public final class Controller extends HttpServlet {
 			Document document = builder.parse(getFileURL(PRODUCTS_XML)); 
 			// get appropriate transformer
 			Command command = CommandCreator.createCommand(request);
-			Transformer transf = command.execute(request);
+			command.execute(request, response);
 			// transformation
 			DOMSource source = new DOMSource(document);
 			Result result = new StreamResult(response.getWriter());
-			transf.transform(source, result);
+			//transf.transform(source, result);
 		} catch (CommandException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

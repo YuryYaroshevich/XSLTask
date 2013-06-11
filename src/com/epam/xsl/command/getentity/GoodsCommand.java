@@ -4,6 +4,7 @@ import static com.epam.xsl.command.util.FileURLContainer.GOODS_XSLT;
 import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -18,8 +19,8 @@ public final class GoodsCommand implements Command {
 	private static final String CATEGORY_NAME = "categoryName";
 
 	@Override
-	public Transformer execute(HttpServletRequest request)
-			throws CommandException {
+	public void execute(HttpServletRequest request,
+			HttpServletResponse response) throws CommandException {
 		try {
 			Templates goods = TemplatesCache
 					.getTemplates(getFileURL(GOODS_XSLT));
@@ -29,7 +30,6 @@ public final class GoodsCommand implements Command {
 					request.getParameter(SUBCATEGORY_NAME));
 			transf.setParameter(CATEGORY_NAME,
 					request.getParameter(CATEGORY_NAME));
-			return transf;
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
 			throw new CommandException(e);

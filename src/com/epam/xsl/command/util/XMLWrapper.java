@@ -3,11 +3,16 @@ package com.epam.xsl.command.util;
 import static com.epam.xsl.command.util.FileURLContainer.PRODUCTS_XML;
 import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
 
+import java.io.File;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
@@ -21,6 +26,8 @@ public final class XMLWrapper {
 
 	private static final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
 			.newInstance();
+	
+	private static final TransformerFactory transfFactory = TransformerFactory.newInstance();
 
 	private XMLWrapper() {
 	}
@@ -42,10 +49,19 @@ public final class XMLWrapper {
 			Good good) throws Exception {
 		writeLock.lock();
 		try {
+			// adding new good to Document object
 			DocumentBuilder builder = docBuilderFactory.newDocumentBuilder();
 			Document document = builder.parse(getFileURL(PRODUCTS_XML));
-			return ProductsDOMManipulator.addGoodToDocument(categName,
+			ProductsDOMManipulator.addGoodToDocument(categName,
 					subcategName, good, document);
+			//writing to xml
+			StreamResult outputTarget = new StreamResult(new File(
+					getFileURL(PRODUCTS_XML)));
+			Transformer transf = transfFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			transf.transform(source, outputTarget);
+			
+			return document;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
