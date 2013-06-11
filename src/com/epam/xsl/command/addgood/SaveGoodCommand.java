@@ -1,10 +1,7 @@
 package com.epam.xsl.command.addgood;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
