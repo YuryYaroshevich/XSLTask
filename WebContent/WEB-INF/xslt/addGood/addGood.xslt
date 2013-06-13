@@ -57,7 +57,7 @@
 						<tr>
 							<td>Not in stock</td>
 							<td>
-								<input type="checkbox" name="notInStock" />
+								<input type="checkbox" name="notInStock" value="true" />
 							</td>
 						</tr>
 					</table>
