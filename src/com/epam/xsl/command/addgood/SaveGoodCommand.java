@@ -1,14 +1,24 @@
 package com.epam.xsl.command.addgood;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Result;
+import javax.xml.transform.Templates;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.command.util.XMLWrapper;
+import com.epam.xsl.command.util.TemplatesCache;
+import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 import com.epam.xsl.product.Good;
+import static com.epam.xsl.command.util.FileURLContainer.*;
 
 public final class SaveGoodCommand implements Command {
 	// parameter names
@@ -30,7 +40,12 @@ public final class SaveGoodCommand implements Command {
 			Good good = buildGood(request);
 			Document document = XMLWrapper.writeToXML(categoryName,
 					subcategoryName, good);
-			
+			Templates goodsTempl = TemplatesCache
+					.getTemplates(getFileURL(GOODS_XSLT));
+			Transformer transf = goodsTempl.newTransformer();
+			transf.setParameter(CATEGORY_NAME, categoryName);
+			transf.setParameter(SUBCATEGORY_NAME, subcategoryName);
+			applyTransformation(transf, document, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
@@ -50,5 +65,13 @@ public final class SaveGoodCommand implements Command {
 			good.setPrice(Integer.valueOf(req.getParameter(PRICE)));
 		}
 		return good;
+	}
+
+	private static void applyTransformation(Transformer transf,
+			Document document, HttpServletResponse resp)
+			throws TransformerException, IOException {
+		DOMSource source = new DOMSource(document);
+		Result outputTarget = new StreamResult(resp.getWriter());
+		transf.transform(source, outputTarget);
 	}
 }

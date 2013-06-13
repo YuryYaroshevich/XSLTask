@@ -1,4 +1,4 @@
-package com.epam.xsl.command.util;
+package com.epam.xsl.command.xmlwrapper;
 
 final class ProductsXMLElement {
 	private static final String PREFIX = "pr:";

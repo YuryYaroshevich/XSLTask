@@ -1,4 +1,4 @@
-package com.epam.xsl.command.util;
+package com.epam.xsl.command.xmlwrapper;
 
 import static com.epam.xsl.command.util.FileURLContainer.PRODUCTS_XML;
 import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
@@ -57,8 +57,8 @@ public final class XMLWrapper {
 			// writing to XML
 			StreamResult outputTarget = new StreamResult(new File(
 					getFileURL(PRODUCTS_XML)));
-			Transformer transf = transfFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
+			Transformer transf = transfFactory.newTransformer();
 			transf.transform(source, outputTarget);
 			return document;
 		} catch (Exception e) {

@@ -16,7 +16,7 @@ import org.w3c.dom.Document;
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.util.TemplatesCache;
-import com.epam.xsl.command.util.XMLWrapper;
+import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 
 public final class AddGoodCommand implements Command {
 	// parameter name

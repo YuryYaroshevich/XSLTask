@@ -15,16 +15,16 @@ import org.w3c.dom.Document;
 
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.util.TemplatesCache;
-import com.epam.xsl.command.util.XMLWrapper;
+import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 
 public final class NoCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws CommandException {
 		try {
-			Templates categoryListTempl = TemplatesCache
+			Templates categoriesTempl = TemplatesCache
 					.getTemplates(getFileURL(CATEGORIES_XSLT));
-			Transformer transf = categoryListTempl.newTransformer();
+			Transformer transf = categoriesTempl.newTransformer();
 			applyTransformation(transf, response);
 		} catch (Exception e) {
 			e.printStackTrace();

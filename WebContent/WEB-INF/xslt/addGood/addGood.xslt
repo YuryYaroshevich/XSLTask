@@ -21,8 +21,8 @@
 				</h2>
 				<form action="controller">
 					<input type="hidden" name="command" value="SAVE_GOOD" />
-					<input type="hidden" name="category" value="{$categoryName}" />
-					<input type="hidden" name="subcategory" value="{$subcategoryName}" />
+					<input type="hidden" name="categoryName" value="{$categoryName}" />
+					<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />
 					<table>
 						<tr>
 							<td>Producer:</td>

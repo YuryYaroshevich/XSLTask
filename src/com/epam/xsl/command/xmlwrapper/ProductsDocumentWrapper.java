@@ -1,4 +1,4 @@
-package com.epam.xsl.command.util;
+package com.epam.xsl.command.xmlwrapper;
 
 import static com.epam.xsl.command.util.FileURLContainer.PRODUCTS_XML;
 import static com.epam.xsl.command.util.FileURLContainer.getFileURL;

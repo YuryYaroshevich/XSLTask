@@ -1,9 +1,19 @@
-package com.epam.xsl.command.util;
+package com.epam.xsl.command.xmlwrapper;
 
-import static com.epam.xsl.command.util.ProductsXMLElement.*;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.CATEGORY_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.COLOR_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.DATE_OF_ISSUE_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.GOOD_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.MODEL_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.NAME_ATTR;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.NOT_IN_STOCK_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.PRICE_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.PRODUCER_ELEM;
+import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.SUBCATEGORY_ELEM;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.epam.xsl.product.Good;
@@ -12,8 +22,8 @@ final class ProductsDOMManipulator {
 	private ProductsDOMManipulator() {
 	}
 
-	public static void addGoodToDocument(String categName,
-			String subcategName, Good good, Document document) {
+	public static void addGoodToDocument(String categName, String subcategName,
+			Good good, Document document) {
 		NodeList categNodes = document.getElementsByTagName(CATEGORY_ELEM);
 		for (int ci = 0; ci < categNodes.getLength(); ci++) {
 			Element categElem = (Element) categNodes.item(ci);
@@ -21,13 +31,13 @@ final class ProductsDOMManipulator {
 			if (categName.equals(nameAttrVal)) {
 				NodeList subcategNodes = categElem
 						.getElementsByTagName(SUBCATEGORY_ELEM);
-				addGoodToAppropriateSubcateg(document, subcategNodes, subcategName,
-						good);
+				addGoodToAppropriateSubcateg(document, subcategNodes,
+						subcategName, good);
 				break;
 			}
 		}
 	}
-	
+
 	private static void addGoodToAppropriateSubcateg(Document document,
 			NodeList subcategNodes, String subcategName, Good good) {
 		for (int sj = 0; sj < subcategNodes.getLength(); sj++) {
@@ -54,28 +64,32 @@ final class ProductsDOMManipulator {
 	private static void appendProducer(Document document, Element newGoodElem,
 			Good good) {
 		Element producerElem = document.createElement(PRODUCER_ELEM);
-		producerElem.setNodeValue(good.getProducer());
+		Node text = document.createTextNode(good.getProducer());
+		producerElem.appendChild(text);
 		newGoodElem.appendChild(producerElem);
 	}
 
 	private static void appendModel(Document document, Element newGoodElem,
 			Good good) {
 		Element modelElem = document.createElement(MODEL_ELEM);
-		modelElem.setNodeValue(good.getModel());
+		Node text = document.createTextNode(good.getModel());
+		modelElem.appendChild(text);
 		newGoodElem.appendChild(modelElem);
 	}
 
 	private static void appendDateOfIssue(Document document,
 			Element newGoodElem, Good good) {
 		Element dateOfIssueElem = document.createElement(DATE_OF_ISSUE_ELEM);
-		dateOfIssueElem.setNodeValue(good.getDateOfIssue());
+		Node text = document.createTextNode(good.getDateOfIssue());
+		dateOfIssueElem.appendChild(text);
 		newGoodElem.appendChild(dateOfIssueElem);
 	}
 
 	private static void appendColor(Document document, Element newGoodElem,
 			Good good) {
 		Element colorElem = document.createElement(COLOR_ELEM);
-		colorElem.setNodeValue(good.getColor());
+		Node text = document.createTextNode(good.getColor());
+		colorElem.appendChild(text);
 		newGoodElem.appendChild(colorElem);
 	}
 
@@ -87,7 +101,9 @@ final class ProductsDOMManipulator {
 		} else {
 			Element priceElem = document.createElement(PRICE_ELEM);
 			Integer price = good.getPrice();
-			priceElem.setNodeValue(price.toString());
+			Node text = document.createTextNode(price.toString());
+			priceElem.appendChild(text);
+			newGoodElem.appendChild(priceElem);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <pr:products xmlns:pr="http://www.epam.com/Products"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.epam.com/Products products.xsd">
@@ -26,6 +26,13 @@
 				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
 				<pr:color>blue</pr:color>
 				<pr:price>56700</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>Mercedes</pr:producer>
+				<pr:model>CC322</pr:model>
+				<pr:date-of-issue>12-12-1912</pr:date-of-issue>
+				<pr:color>white</pr:color>
+				<pr:price>1324</pr:price>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>
