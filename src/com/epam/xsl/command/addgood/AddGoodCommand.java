@@ -1,7 +1,7 @@
 package com.epam.xsl.command.addgood;
 
-import static com.epam.xsl.command.util.FileURLContainer.ADD_GOOD_XSLT;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public final class AddGoodCommand implements Command {
 			HttpServletResponse response) throws CommandException {
 		try {
 			Templates addGood = TemplatesCache
-					.getTemplates(getFileURL(ADD_GOOD_XSLT));
+					.getTemplates(getProperty(ADD_GOOD_XSLT));
 			Transformer transf = addGood.newTransformer();
 			// sets parameters
 			transf.setParameter(CATEGORY_NAME,

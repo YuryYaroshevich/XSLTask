@@ -1,7 +1,7 @@
 package com.epam.xsl.command.xmlwrapper;
 
-import static com.epam.xsl.command.util.FileURLContainer.PRODUCTS_XML;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ final class ProductsDocumentWrapper {
 
 	public Document getProductsDocument()
 			throws ParserConfigurationException, SAXException, IOException {
-		String productsXMLURL = getFileURL(PRODUCTS_XML);
+		String productsXMLURL = getProperty(PRODUCTS_XML);
 		File productsXML = new File(productsXMLURL);
 		long lastModified = productsXML.lastModified();
 		// Parse XML if productsDoc is null or out of date 

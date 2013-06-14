@@ -1,7 +1,7 @@
 package com.epam.xsl.command.getentity;
 
-import static com.epam.xsl.command.util.FileURLContainer.GOODS_XSLT;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public final class GoodsCommand implements Command {
 			HttpServletResponse response) throws CommandException {
 		try {
 			Templates goodsTempl = TemplatesCache
-					.getTemplates(getFileURL(GOODS_XSLT));
+					.getTemplates(getProperty(GOODS_XSLT));
 			Transformer transf = goodsTempl.newTransformer();
 			// sets parameters
 			transf.setParameter(SUBCATEGORY_NAME,

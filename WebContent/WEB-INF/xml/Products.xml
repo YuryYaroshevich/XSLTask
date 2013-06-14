@@ -15,7 +15,7 @@
 				<pr:color>orange</pr:color>
 				<pr:not-in-stock/>
 			</pr:good>
-		<pr:good><pr:producer>qwe</pr:producer><pr:model>QW242</pr:model><pr:date-of-issue>12-12-1995</pr:date-of-issue><pr:color>SEF</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>qwe</pr:producer><pr:model>QW242</pr:model><pr:date-of-issue>12-12-1995</pr:date-of-issue><pr:color>SEF</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>qwe</pr:producer><pr:model>QW242</pr:model><pr:date-of-issue>12-12-1995</pr:date-of-issue><pr:color>SEF</pr:color><pr:not-in-stock/></pr:good></pr:subcategory>
+		<pr:good><pr:producer>dgdf</pr:producer><pr:model>QW567</pr:model><pr:date-of-issue>12-12-1987</pr:date-of-issue><pr:color>RED</pr:color><pr:price>4564</pr:price></pr:good></pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
 				<pr:producer>HeavyTaxi</pr:producer>
@@ -31,7 +31,14 @@
 				<pr:color>white</pr:color>
 				<pr:price>1324</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>fghb</pr:producer><pr:model>fg</pr:model><pr:date-of-issue>dfg</pr:date-of-issue><pr:color>dfg</pr:color><pr:not-in-stock/></pr:good></pr:subcategory>
+			<pr:good>
+				<pr:producer>BMW</pr:producer>
+				<pr:model>BM232</pr:model>
+				<pr:date-of-issue>12-12-1989</pr:date-of-issue>
+				<pr:color>sdfsf</pr:color>
+				<pr:price>34345</pr:price>
+			</pr:good>
+		</pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">

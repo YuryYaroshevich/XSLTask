@@ -1,7 +1,7 @@
 package com.epam.xsl.command.getentity;
 
-import static com.epam.xsl.command.util.FileURLContainer.SUBCATEGORIES_XSLT;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +27,7 @@ public final class SubcategoriesCommand implements Command {
 			HttpServletResponse response) throws CommandException {
 		try {
 			Templates subcategoriesTempl = TemplatesCache
-					.getTemplates(getFileURL(SUBCATEGORIES_XSLT));
+					.getTemplates(getProperty(SUBCATEGORIES_XSLT));
 			Transformer transf = subcategoriesTempl.newTransformer();
 			transf.setParameter(CATEGORY_NAME,
 					request.getParameter(CATEGORY_NAME));

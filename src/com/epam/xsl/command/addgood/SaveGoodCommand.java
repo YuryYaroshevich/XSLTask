@@ -18,7 +18,10 @@ import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.util.TemplatesCache;
 import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 import com.epam.xsl.product.Good;
-import static com.epam.xsl.command.util.FileURLContainer.*;
+import com.resource.PropertyGetter;
+
+import static com.resource.PropertyGetter.*;
+import static com.epam.xsl.appconstant.AppConstant.*;
 
 public final class SaveGoodCommand implements Command {
 	// parameter names
@@ -31,6 +34,9 @@ public final class SaveGoodCommand implements Command {
 	private static final String PRICE = "price";
 	private static final String NOT_IN_STOCK = "notInStock";
 
+	private static final String QUERY_START = PropertyGetter
+			.getProperty(REDIRECT_QUERY_START);
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws CommandException {
@@ -41,10 +47,14 @@ public final class SaveGoodCommand implements Command {
 			Document document = XMLWrapper.writeToXML(categoryName,
 					subcategoryName, good);
 			Templates goodsTempl = TemplatesCache
-					.getTemplates(getFileURL(GOODS_XSLT));
+					.getTemplates(getProperty(GOODS_XSLT));
 			Transformer transf = goodsTempl.newTransformer();
 			transf.setParameter(CATEGORY_NAME, categoryName);
 			transf.setParameter(SUBCATEGORY_NAME, subcategoryName);
+			// response.sendRedirect("http://localhost:8081/XSLTask/controller?command=GOODS&categoryName="+categoryName
+			// +"&subcategoryName="+subcategoryName);
+			response.sendRedirect(buildRedirectQuery(categoryName,
+					subcategoryName));
 			applyTransformation(transf, document, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,6 +75,14 @@ public final class SaveGoodCommand implements Command {
 			good.setPrice(Integer.valueOf(req.getParameter(PRICE)));
 		}
 		return good;
+	}
+
+	private static String buildRedirectQuery(String categName,
+			String subcategName) {
+		StringBuilder query = new StringBuilder(QUERY_START);
+		query.append(CATEGORY_NAME + "=" + categName + "&");
+		query.append(SUBCATEGORY_NAME + "=" + subcategName);
+		return query.toString();
 	}
 
 	private static void applyTransformation(Transformer transf,

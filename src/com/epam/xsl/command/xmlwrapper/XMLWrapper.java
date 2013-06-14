@@ -1,7 +1,7 @@
 package com.epam.xsl.command.xmlwrapper;
 
-import static com.epam.xsl.command.util.FileURLContainer.PRODUCTS_XML;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import java.io.File;
 import java.util.concurrent.locks.Lock;
@@ -51,7 +51,7 @@ public final class XMLWrapper {
 					good, document);
 			// writing to XML
 			StreamResult outputTarget = new StreamResult(new File(
-					getFileURL(PRODUCTS_XML)));
+					getProperty(PRODUCTS_XML)));
 			DOMSource source = new DOMSource(document);
 			Transformer transf = transfFactory.newTransformer();
 			transf.transform(source, outputTarget);

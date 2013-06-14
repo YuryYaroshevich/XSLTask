@@ -1,7 +1,7 @@
 package com.epam.xsl.command;
 
-import static com.epam.xsl.command.util.FileURLContainer.CATEGORIES_XSLT;
-import static com.epam.xsl.command.util.FileURLContainer.getFileURL;
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +23,7 @@ public final class NoCommand implements Command {
 			throws CommandException {
 		try {
 			Templates categoriesTempl = TemplatesCache
-					.getTemplates(getFileURL(CATEGORIES_XSLT));
+					.getTemplates(getProperty(CATEGORIES_XSLT));
 			Transformer transf = categoriesTempl.newTransformer();
 			applyTransformation(transf, response);
 		} catch (Exception e) {
