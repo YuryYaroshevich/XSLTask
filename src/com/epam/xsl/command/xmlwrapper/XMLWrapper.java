@@ -25,7 +25,8 @@ public final class XMLWrapper {
 	private static final TransformerFactory transfFactory = TransformerFactory
 			.newInstance();
 
-	private static final ProductsDocumentWrapper productsDocWrapper = new ProductsDocumentWrapper();
+	private static final ProductsDOMManipulator.ProductsDocumentWrapper productsDocWrapper = 
+			new ProductsDOMManipulator.ProductsDocumentWrapper();
 
 	private XMLWrapper() {
 	}

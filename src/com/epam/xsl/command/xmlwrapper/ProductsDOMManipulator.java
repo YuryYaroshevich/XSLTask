@@ -1,5 +1,6 @@
 package com.epam.xsl.command.xmlwrapper;
 
+import static com.epam.xsl.appconstant.AppConstant.PRODUCTS_XML;
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.CATEGORY_ELEM;
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.COLOR_ELEM;
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.DATE_OF_ISSUE_ELEM;
@@ -10,11 +11,20 @@ import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.NOT_IN_STOCK_EL
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.PRICE_ELEM;
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.PRODUCER_ELEM;
 import static com.epam.xsl.command.xmlwrapper.ProductsXMLElement.SUBCATEGORY_ELEM;
+import static com.resource.PropertyGetter.getProperty;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.epam.xsl.product.Good;
 
@@ -100,10 +110,32 @@ final class ProductsDOMManipulator {
 			newGoodElem.appendChild(notInStockElem);
 		} else {
 			Element priceElem = document.createElement(PRICE_ELEM);
-			Integer price = good.getPrice();
-			Node text = document.createTextNode(price.toString());
+			Node text = document.createTextNode(good.getPrice());
 			priceElem.appendChild(text);
 			newGoodElem.appendChild(priceElem);
+		}
+	}
+
+	public static class ProductsDocumentWrapper {
+		private Document productsDoc;
+		private long lastModified;
+
+		private final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+				.newInstance();
+
+		public Document getProductsDocument()
+				throws ParserConfigurationException, SAXException, IOException {
+			String productsXMLURL = getProperty(PRODUCTS_XML);
+			File productsXML = new File(productsXMLURL);
+			long lastModified = productsXML.lastModified();
+			// Parse XML if productsDoc is null or out of date
+			if (productsDoc == null || this.lastModified < lastModified) {
+				DocumentBuilder builder = docBuilderFactory
+						.newDocumentBuilder();
+				productsDoc = builder.parse(productsXMLURL);
+				this.lastModified = lastModified;
+			}
+			return productsDoc;
 		}
 	}
 }

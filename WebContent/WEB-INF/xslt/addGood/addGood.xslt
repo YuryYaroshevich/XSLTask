@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:good="java:com.epam.xsl.product.Good"
+	xmlns:errors="java:java.util.Map" exclude-result-prefixes="good errors">
 
 	<xsl:output method="html" />
 
 	<xsl:template match="/">
-	    <xsl:param name="categoryName" />
+		<xsl:param name="categoryName" />
 		<xsl:param name="subcategoryName" />
+		<xsl:param name="errors" />
+		<xsl:param name="good" />
 		<html>
 			<head>
 				<title>
@@ -27,38 +30,53 @@
 						<tr>
 							<td>Producer:</td>
 							<td>
-								<input type="text" name="producer" />
+								<input type="text" name="producer" value="{good:getProducer($good)}" />
+								<xsl:value-of select="errors:getValue($errors, producer)" />
 							</td>
 						</tr>
 						<tr>
 							<td>Model:</td>
 							<td>
-								<input type="text" name="model" />
+								<input type="text" name="model" value="{good:getModel($good)}" />
+								<xsl:value-of select="errors:getValue($errors, model)" />
 							</td>
 						</tr>
 						<tr>
 							<td>Date of issue:</td>
+							s
 							<td>
-								<input type="text" name="dateOfIssue" />
+								<input type="text" name="dateOfIssue" value="{good:getDateOfIssue($good)}" />
+								<xsl:value-of select="errors:getValue($errors, dateOfIssue)" />
 							</td>
 						</tr>
 						<tr>
 							<td>Color:</td>
 							<td>
-								<input type="text" name="color" />
+								<input type="text" name="color" value="{good:getColor($good)}" />
+								<xsl:value-of select="errors:getValue($errors, color)" />
 							</td>
 						</tr>
 						<tr>
 							<td>Price</td>
 							<td>
-								<input type="text" name="price" />
+								<input type="text" name="price" value="{good:getPrice($good)}" />
+								<xsl:value-of select="errors:getValue($errors, price)" />
 							</td>
 						</tr>
 						<tr>
 							<td>Not in stock</td>
 							<td>
-								<input type="checkbox" name="notInStock" value="true" />
+								<xsl:choose>
+									<xsl:when test="good:isNotInStock($good)">
+										<input type="checkbox" name="notInStock" value="true"
+											checked="checked" />
+									</xsl:when>
+									<xsl:otherwise>
+										<input type="checkbox" name="notInStock" value="true" />
+									</xsl:otherwise>
+								</xsl:choose>
 							</td>
+							<xsl:value-of select="errors:getValue($errors, notInStock)" />
 						</tr>
 					</table>
 					<input type="submit" value="SAVE GOOD" />

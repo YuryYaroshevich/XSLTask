@@ -1,5 +1,8 @@
 package com.epam.xsl.command.addgood;
 
+import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.resource.PropertyGetter.getProperty;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,25 +18,13 @@ import org.w3c.dom.Document;
 
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.command.util.GoodValidator;
 import com.epam.xsl.command.util.TemplatesCache;
 import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 import com.epam.xsl.product.Good;
 import com.resource.PropertyGetter;
 
-import static com.resource.PropertyGetter.*;
-import static com.epam.xsl.appconstant.AppConstant.*;
-
 public final class SaveGoodCommand implements Command {
-	// parameter names
-	private static final String CATEGORY_NAME = "categoryName";
-	private static final String SUBCATEGORY_NAME = "subcategoryName";
-	private static final String PRODUCER = "producer";
-	private static final String MODEL = "model";
-	private static final String DATE_OF_ISSUE = "dateOfIssue";
-	private static final String COLOR = "color";
-	private static final String PRICE = "price";
-	private static final String NOT_IN_STOCK = "notInStock";
-
 	private static final String QUERY_START = PropertyGetter
 			.getProperty(REDIRECT_QUERY_START);
 
@@ -43,16 +34,27 @@ public final class SaveGoodCommand implements Command {
 		try {
 			String categoryName = request.getParameter(CATEGORY_NAME);
 			String subcategoryName = request.getParameter(SUBCATEGORY_NAME);
+
+			GoodValidator validator = new GoodValidator();
+			Document document = null;
+			Transformer transf = null;
 			Good good = buildGood(request);
-			Document document = XMLWrapper.writeToXML(categoryName,
-					subcategoryName, good);
-			Templates goodsTempl = TemplatesCache
-					.getTemplates(getProperty(GOODS_XSLT));
-			Transformer transf = goodsTempl.newTransformer();
+			if (validator.isValid(request)) {
+				Templates goodsTempl = TemplatesCache
+						.getTemplates(getProperty(GOODS_XSLT));
+				transf = goodsTempl.newTransformer();
+				document = XMLWrapper.writeToXML(categoryName, subcategoryName,
+						good);
+			} else {
+				Templates addGoodTempl = TemplatesCache.getTemplates(ADD_GOOD_XSLT);
+				transf = addGoodTempl.newTransformer();
+				transf.setParameter("errors", validator.getErrors());
+				transf.setParameter("good", good);
+			}
+
 			transf.setParameter(CATEGORY_NAME, categoryName);
 			transf.setParameter(SUBCATEGORY_NAME, subcategoryName);
-			// response.sendRedirect("http://localhost:8081/XSLTask/controller?command=GOODS&categoryName="+categoryName
-			// +"&subcategoryName="+subcategoryName);
+
 			response.sendRedirect(buildRedirectQuery(categoryName,
 					subcategoryName));
 			applyTransformation(transf, document, response);
@@ -72,7 +74,7 @@ public final class SaveGoodCommand implements Command {
 		if (notInStock) {
 			good.markAsNotInStock();
 		} else {
-			good.setPrice(Integer.valueOf(req.getParameter(PRICE)));
+			good.setPrice(req.getParameter(PRICE));
 		}
 		return good;
 	}

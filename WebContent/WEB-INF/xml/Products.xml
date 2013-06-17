@@ -38,7 +38,7 @@
 				<pr:color>sdfsf</pr:color>
 				<pr:price>34345</pr:price>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>db</pr:producer><pr:model>ER234</pr:model><pr:date-of-issue>12-12-1986</pr:date-of-issue><pr:color>DRGD</pr:color><pr:price>234</pr:price></pr:good><pr:good><pr:producer>QE</pr:producer><pr:model>QW232</pr:model><pr:date-of-issue>12-12-1985</pr:date-of-issue><pr:color>DGR</pr:color><pr:price>34</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
@@ -67,6 +67,6 @@
 				<pr:color>brown</pr:color>
 				<pr:price>52</pr:price>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>dfg</pr:producer><pr:model>QW233</pr:model><pr:date-of-issue>12-12-1990</pr:date-of-issue><pr:color>SDF</pr:color><pr:price>324</pr:price></pr:good><pr:good><pr:producer>fgh</pr:producer><pr:model>QW123</pr:model><pr:date-of-issue>12-12-1956</pr:date-of-issue><pr:color>WER</pr:color><pr:price>34</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 </pr:products>

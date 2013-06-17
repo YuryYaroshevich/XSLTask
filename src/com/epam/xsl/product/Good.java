@@ -9,15 +9,15 @@ public class Good {
 
 	private String color;
 
-	private int price;
+	private String price;
 
 	private boolean notInStock;
 
 	// the value of price field if the product not in stock
-	private static final int NOT_IN_STOCK = -1;
+	private static final String NOT_IN_STOCK = "";
 
 	public Good(String producer, String model, String dateOfIssue,
-			String color, int price) {
+			String color, String price) {
 		this.producer = producer;
 		this.model = model;
 		this.dateOfIssue = dateOfIssue;
@@ -71,11 +71,11 @@ public class Good {
 		this.color = color;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 		this.notInStock = false;
 	}
@@ -107,7 +107,7 @@ public class Good {
 				+ ((dateOfIssue == null) ? 0 : dateOfIssue.hashCode());
 		result = prime3 * result + ((model == null) ? 0 : model.hashCode());
 		result = prime4 * result + (notInStock ? 1231 : 1237);
-		result = prime5 * result + price;
+		result = prime5 * result + price.hashCode();
 		result = prime6 * result
 				+ ((producer == null) ? 0 : producer.hashCode());
 		return result;
@@ -146,7 +146,7 @@ public class Good {
 		if (notInStock != other.notInStock) {
 			return false;
 		}
-		if (price != other.price) {
+		if (!price.equals(other.price)) {
 			return false;
 		}
 		if (producer == null) {
