@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><pr:products xmlns:pr="http://www.epam.com/Products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/Products products.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pr:products xmlns:pr="http://www.epam.com/products"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.epam.com/products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
@@ -6,16 +9,16 @@
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
-				<pr:not-in-stock/>
+				<pr:not-in-stock />
 			</pr:good>
 			<pr:good>
 				<pr:producer>RideThem</pr:producer>
 				<pr:model>Yu545</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>orange</pr:color>
-				<pr:not-in-stock/>
+				<pr:not-in-stock />
 			</pr:good>
-		<pr:good><pr:producer>dgdf</pr:producer><pr:model>QW567</pr:model><pr:date-of-issue>12-12-1987</pr:date-of-issue><pr:color>RED</pr:color><pr:price>4564</pr:price></pr:good></pr:subcategory>
+		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
 				<pr:producer>HeavyTaxi</pr:producer>
@@ -38,7 +41,7 @@
 				<pr:color>sdfsf</pr:color>
 				<pr:price>34345</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>db</pr:producer><pr:model>ER234</pr:model><pr:date-of-issue>12-12-1986</pr:date-of-issue><pr:color>DRGD</pr:color><pr:price>234</pr:price></pr:good><pr:good><pr:producer>QE</pr:producer><pr:model>QW232</pr:model><pr:date-of-issue>12-12-1985</pr:date-of-issue><pr:color>DGR</pr:color><pr:price>34</pr:price></pr:good></pr:subcategory>
+		</pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
@@ -67,6 +70,6 @@
 				<pr:color>brown</pr:color>
 				<pr:price>52</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>dfg</pr:producer><pr:model>QW233</pr:model><pr:date-of-issue>12-12-1990</pr:date-of-issue><pr:color>SDF</pr:color><pr:price>324</pr:price></pr:good><pr:good><pr:producer>fgh</pr:producer><pr:model>QW123</pr:model><pr:date-of-issue>12-12-1956</pr:date-of-issue><pr:color>WER</pr:color><pr:price>34</pr:price></pr:good></pr:subcategory>
+		</pr:subcategory>
 	</pr:category>
 </pr:products>

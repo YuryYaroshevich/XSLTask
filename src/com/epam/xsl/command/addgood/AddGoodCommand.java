@@ -1,6 +1,6 @@
 package com.epam.xsl.command.addgood;
 
-import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.epam.xsl.appconstant.AppConstant.ADD_GOOD_XSLT;
 import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;

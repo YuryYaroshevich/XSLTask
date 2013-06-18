@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.epam.com/Products"
-	xmlns:tns="http://www.epam.com/Products" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.epam.com/products"
+	xmlns:tns="http://www.epam.com/products" elementFormDefault="qualified">
 
 	<element name="products">
 		<complexType>
