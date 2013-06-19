@@ -2,12 +2,12 @@ package com.epam.xsl.command.factory;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.epam.xsl.command.AddGoodCommand;
 import com.epam.xsl.command.Command;
-import com.epam.xsl.command.NoCommand;
-import com.epam.xsl.command.addgood.AddGoodCommand;
-import com.epam.xsl.command.addgood.SaveGoodCommand;
-import com.epam.xsl.command.getentity.GoodsCommand;
-import com.epam.xsl.command.getentity.SubcategoriesCommand;
+import com.epam.xsl.command.GoodsCommand;
+import com.epam.xsl.command.CategoriesCommand;
+import com.epam.xsl.command.SaveGoodCommand;
+import com.epam.xsl.command.SubcategoriesCommand;
 
 
 public final class CommandCreator {
@@ -29,7 +29,7 @@ public final class CommandCreator {
 		case SAVE_GOOD: 
 			return new SaveGoodCommand();
 		default:
-			return new NoCommand();
+			return new CategoriesCommand();
 		}
 	}
 

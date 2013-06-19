@@ -12,8 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
 public final class TemplatesCache {
-	private static final Map<String, TemplatesWrapper> cache = 
-			new HashMap<String, TemplatesWrapper>();
+	private static final Map<String, TemplatesWrapper> cache = new HashMap<String, TemplatesWrapper>();
 
 	private static final TransformerFactory transformerFactory = TransformerFactory
 			.newInstance();

@@ -10,6 +10,8 @@ public final class AppConstant {
 	public static final String SUBCATEGORIES_XSLT = "subcategories.xslt";
 	public static final String GOODS_XSLT = "goods.xslt";
 	public static final String ADD_GOOD_XSLT = "add.good.xslt";
+	public static final String VALIDATION_XSLT = "validation.xslt";
+	public static final String SAVE_GOOD_XSLT = "save.good.xslt";
 
 	// I need this part of URL to build an address for redirecting
 	public static final String REDIRECT_QUERY_START = "redirect.query.start";

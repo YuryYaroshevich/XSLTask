@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:pr="http://www.epam.com/products">
 	<xsl:output method="html" />
 
-	<xsl:template match="/products">
+	<xsl:template match="/pr:products">
 		<xsl:param name="categoryName" />
 		<xsl:param name="subcategoryName" />
 		<html>
@@ -19,8 +20,8 @@
 					<xsl:value-of select="$subcategoryName" />
 				</h1>
 				<xsl:apply-templates
-					select="category[@name=$categoryName]/
-					        subcategory[@name=$subcategoryName]/good" />
+					select="pr:category[@name=$categoryName]/
+					        pr:subcategory[@name=$subcategoryName]/pr:good" />
 				<form action="controller">
 					<input type="hidden" name="command" value="ADD_GOOD" />
 					<input type="hidden" name="categoryName" value="{$categoryName}" />
@@ -31,5 +32,5 @@
 		</html>
 	</xsl:template>
 
-	<xsl:include href="Good.xslt" />
+	<xsl:include href="good.xslt" />
 </xsl:stylesheet>

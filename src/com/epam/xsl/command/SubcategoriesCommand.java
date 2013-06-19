@@ -1,22 +1,18 @@
-package com.epam.xsl.command.getentity;
+package com.epam.xsl.command;
 
-import static com.epam.xsl.appconstant.AppConstant.*;
+import static com.epam.xsl.appconstant.AppConstant.PRODUCTS_XML;
+import static com.epam.xsl.appconstant.AppConstant.SUBCATEGORIES_XSLT;
 import static com.resource.PropertyGetter.getProperty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.transform.Result;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
-import org.w3c.dom.Document;
-
-import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.util.TemplatesCache;
-import com.epam.xsl.command.xmlwrapper.XMLWrapper;
 
 public final class SubcategoriesCommand implements Command {
 	// parameter name
@@ -31,18 +27,12 @@ public final class SubcategoriesCommand implements Command {
 			Transformer transf = subcategoriesTempl.newTransformer();
 			transf.setParameter(CATEGORY_NAME,
 					request.getParameter(CATEGORY_NAME));
-			applyTransformation(transf, response);
+			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
+			StreamResult output = new StreamResult(response.getWriter());
+			transf.transform(xmlSource, output);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
 		}
-	}
-	
-	private static void applyTransformation(Transformer transf,
-			HttpServletResponse response) throws Exception {
-		Document document = XMLWrapper.readFromXML();
-		DOMSource source = new DOMSource(document);
-		Result outputTarget = new StreamResult(response.getWriter());
-		transf.transform(source, outputTarget);
 	}
 }
