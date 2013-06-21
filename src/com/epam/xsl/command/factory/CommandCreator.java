@@ -35,9 +35,9 @@ public final class CommandCreator {
 
 	private static CommandEnum getCommandEnum(String command) {
 		if (command == null) {
-			return CommandEnum.NO_COMMAND;
+			return CommandEnum.CATEGORIES_COMMAND;
 		} else if (isWrongCommandName(command)) {
-			return CommandEnum.NO_COMMAND;
+			return CommandEnum.CATEGORIES_COMMAND;
 		} else {
 			return CommandEnum.valueOf(command);
 		}

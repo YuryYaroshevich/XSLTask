@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <pr:products xmlns:pr="http://www.epam.com/products"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.epam.com/products products.xsd">
-	<pr:category name="car">
-		<pr:subcategory name="taxi">
+	<pr:category>
+		<pr:subcategory>
 			<pr:good>
 				<pr:producer>BestTaxi</pr:producer>
 				<pr:model>ik565</pr:model>
@@ -19,7 +19,7 @@
 				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>
-		<pr:subcategory name="cargoTaxi">
+		<pr:subcategory>
 			<pr:good>
 				<pr:producer>HeavyTaxi</pr:producer>
 				<pr:model>tY121</pr:model>
@@ -27,48 +27,16 @@
 				<pr:color>blue</pr:color>
 				<pr:price>56700</pr:price>
 			</pr:good>
-			<pr:good>
-				<pr:producer>Mercedes</pr:producer>
-				<pr:model>CC322</pr:model>
-				<pr:date-of-issue>12-12-1912</pr:date-of-issue>
-				<pr:color>white</pr:color>
-				<pr:price>1324</pr:price>
-			</pr:good>
-			<pr:good>
-				<pr:producer>BMW</pr:producer>
-				<pr:model>BM232</pr:model>
-				<pr:date-of-issue>12-12-1989</pr:date-of-issue>
-				<pr:color>sdfsf</pr:color>
-				<pr:price>34345</pr:price>
-			</pr:good>
 		</pr:subcategory>
 	</pr:category>
-	<pr:category name="ice-cream">
-		<pr:subcategory name="fruit ice-cream">
+	<pr:category>
+		<pr:subcategory>
 			<pr:good>
 				<pr:producer>Cold fruit</pr:producer>
 				<pr:model>IC320</pr:model>
 				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
 				<pr:color>blue</pr:color>
 				<pr:price>40</pr:price>
-			</pr:good>
-		</pr:subcategory>
-		<pr:subcategory name="ice-cream with jem">
-			<pr:good>
-				<pr:producer>Cold fruit</pr:producer>
-				<pr:model>UI320</pr:model>
-				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
-				<pr:color>yellow</pr:color>
-				<pr:price>45</pr:price>
-			</pr:good>
-		</pr:subcategory>
-		<pr:subcategory name="chocolat ice-cream">
-			<pr:good>
-				<pr:producer>Chocolate ice</pr:producer>
-				<pr:model>NM456</pr:model>
-				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
-				<pr:color>brown</pr:color>
-				<pr:price>52</pr:price>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>
