@@ -38,20 +38,6 @@
 				<pr:color>blue</pr:color>
 				<pr:price>40</pr:price>
 			</pr:good>
-			<pr:good>
-				<pr:producer>qwe</pr:producer>
-				<pr:model>qw121</pr:model>
-				<pr:date-of-issue>12-08-2033</pr:date-of-issue>
-				<pr:color>wer</pr:color>
-				<pr:price>12342</pr:price>
-			</pr:good>
-			<pr:good>
-				<pr:producer>tyuty</pr:producer>
-				<pr:model>we234</pr:model>
-				<pr:date-of-issue>12-12-2056</pr:date-of-issue>
-				<pr:color>fdfg</pr:color>
-				<pr:not-in-stock />
-			</pr:good>
 		</pr:subcategory>
 	</pr:category>
 </pr:products>

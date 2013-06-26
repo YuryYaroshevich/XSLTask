@@ -3,7 +3,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pr="http://www.epam.com/products">
 
 	<xsl:output method="xml" />
-
+<!-- 
 	<xsl:param name="categoryName" />
 	<xsl:param name="subcategoryName" />
 	<xsl:param name="producer" />
@@ -11,6 +11,31 @@
 	<xsl:param name="dateOfIssue" />
 	<xsl:param name="color" />
 	<xsl:param name="price" />
+
+
+	<xsl:template match="/">
+		<xsl:call-template name="saveGood">
+			<xsl:with-param name="categoryName" select="$categoryName" />
+			<xsl:with-param name="subcategoryName" select="$subcategoryName" />
+			<xsl:with-param name="producer" select="$producer" />
+			<xsl:with-param name="model" select="$model" />
+			<xsl:with-param name="dateOfIssue" select="$dateOfIssue" />
+			<xsl:with-param name="color" select="$color" />
+			<xsl:with-param name="price" select="$price" />
+		</xsl:call-template>
+	</xsl:template>
+ -->
+	<xsl:template name="saveGood">
+		<xsl:param name="categoryName" />
+		<xsl:param name="subcategoryName" />
+		<xsl:param name="producer" />
+		<xsl:param name="model" />
+		<xsl:param name="dateOfIssue" />
+		<xsl:param name="color" />
+		<xsl:param name="price" />
+
+		<xsl:apply-templates select="node()|@*" />
+	</xsl:template>
 
 	<xsl:template match="node()|@*">
 		<xsl:copy>
@@ -22,7 +47,7 @@
 	<xsl:template match="pr:subcategory[@name=$subcategoryName]">
 		<xsl:copy>
 			<xsl:apply-templates select="node()|@*" />
-			<xsl:call-template name="saveGood">
+			<xsl:call-template name="pasteNewGood">
 				<xsl:with-param name="producer" select="$producer" />
 				<xsl:with-param name="model" select="$model" />
 				<xsl:with-param name="dateOfIssue" select="$dateOfIssue" />
@@ -32,7 +57,7 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template name="saveGood">
+	<xsl:template name="pasteNewGood">
 		<xsl:param name="producer" />
 		<xsl:param name="model" />
 		<xsl:param name="dateOfIssue" />

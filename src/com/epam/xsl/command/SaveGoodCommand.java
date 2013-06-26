@@ -1,16 +1,6 @@
 package com.epam.xsl.command;
 
-import static com.epam.xsl.appconstant.AppConstant.CATEGORY_NAME;
-import static com.epam.xsl.appconstant.AppConstant.COLOR;
-import static com.epam.xsl.appconstant.AppConstant.DATE_OF_ISSUE;
-import static com.epam.xsl.appconstant.AppConstant.GOODS_XSLT;
-import static com.epam.xsl.appconstant.AppConstant.MODEL;
-import static com.epam.xsl.appconstant.AppConstant.PRICE;
-import static com.epam.xsl.appconstant.AppConstant.PRODUCER;
-import static com.epam.xsl.appconstant.AppConstant.PRODUCTS_XML;
-import static com.epam.xsl.appconstant.AppConstant.REDIRECT_QUERY_START;
-import static com.epam.xsl.appconstant.AppConstant.SAVE_GOOD_XSLT;
-import static com.epam.xsl.appconstant.AppConstant.SUBCATEGORY_NAME;
+import static com.epam.xsl.appconstant.AppConstant.*;
 import static com.resource.PropertyGetter.getProperty;
 
 import java.io.FileWriter;
@@ -36,7 +26,7 @@ public final class SaveGoodCommand implements Command {
 			String categoryName = req.getParameter(CATEGORY_NAME);
 			String subcategoryName = req.getParameter(SUBCATEGORY_NAME);
 			Templates validationTempl = TemplatesCache
-					.getTemplates(getProperty(SAVE_GOOD_XSLT));
+					.getTemplates(getProperty(VALIDATION_XSLT));
 			Transformer transf = validationTempl.newTransformer();
 
 			transf.setParameter(CATEGORY_NAME, categoryName);
