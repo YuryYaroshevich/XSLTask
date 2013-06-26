@@ -5,7 +5,6 @@ import static com.epam.xsl.appconstant.AppConstant.COLOR;
 import static com.epam.xsl.appconstant.AppConstant.DATE_OF_ISSUE;
 import static com.epam.xsl.appconstant.AppConstant.GOODS_XSLT;
 import static com.epam.xsl.appconstant.AppConstant.MODEL;
-import static com.epam.xsl.appconstant.AppConstant.NOT_IN_STOCK;
 import static com.epam.xsl.appconstant.AppConstant.PRICE;
 import static com.epam.xsl.appconstant.AppConstant.PRODUCER;
 import static com.epam.xsl.appconstant.AppConstant.PRODUCTS_XML;
@@ -46,7 +45,7 @@ public final class SaveGoodCommand implements Command {
 			transf.setParameter(MODEL, req.getParameter(MODEL));
 			transf.setParameter(DATE_OF_ISSUE, req.getParameter(DATE_OF_ISSUE));
 			transf.setParameter(COLOR, req.getParameter(COLOR));
-			transf.setParameter(NOT_IN_STOCK, req.getParameter(PRICE));
+			transf.setParameter(PRICE, req.getParameter(PRICE));
 			
 			StreamSource XMLSource = new StreamSource(getProperty(PRODUCTS_XML));
 			StringWriter stringWriter = new StringWriter();

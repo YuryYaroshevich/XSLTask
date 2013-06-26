@@ -12,23 +12,26 @@
 	<xsl:param name="color" />
 	<xsl:param name="price" />
 
-	<xsl:template match="node()">
+	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates
-				select="pr:products/pr:category[name=$categoryName]/pr:subcategory[name=$subcategoryName]=last()" />
+				select="pr:category[name=$categoryName]/pr:subcategory[name=$subcategoryName]|node()|@*" />
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template
-		match="pr:products/pr:category[name=$categoryName]/child::pr:subcategory[name=$subcategoryName]">
-		<xsl:call-template name="saveGood">
-			<xsl:with-param name="producer" select="$producer" />
-			<xsl:with-param name="model" select="$model" />
-			<xsl:with-param name="dateOfIssue" select="$dateOfIssue" />
-			<xsl:with-param name="color" select="$color" />
-			<xsl:with-param name="price" select="$price" />
-		</xsl:call-template>
+	<xsl:template match="pr:subcategory[@name=$subcategoryName]">
+		<xsl:copy>
+			<xsl:apply-templates select="node()|@*" />
+			<xsl:call-template name="saveGood">
+				<xsl:with-param name="producer" select="$producer" />
+				<xsl:with-param name="model" select="$model" />
+				<xsl:with-param name="dateOfIssue" select="$dateOfIssue" />
+				<xsl:with-param name="color" select="$color" />
+				<xsl:with-param name="price" select="$price" />
+			</xsl:call-template>
+		</xsl:copy>
 	</xsl:template>
+
 	<xsl:template name="saveGood">
 		<xsl:param name="producer" />
 		<xsl:param name="model" />
@@ -36,32 +39,29 @@
 		<xsl:param name="color" />
 		<xsl:param name="price" />
 
-		<xsl:template match="pr:producer">
-			<xsl:element name=".">
+		<xsl:element name="pr:good">
+			<xsl:element name="pr:producer">
 				<xsl:value-of select="$producer" />
 			</xsl:element>
-		</xsl:template>
-		<xsl:template match="pr:good/pr:model">
-			<xsl:value-of select="$model" />
-		</xsl:template>
-		<xsl:template match="pr:good/pr:dateOfIssue">
-			<xsl:value-of select="$dateOfIssue" />
-		</xsl:template>
-		<xsl:template match="pr:good/pr:color">
-			<xsl:value-of select="$color" />
-		</xsl:template>
-		<xsl:template match="pr:good/pr:price">
-			<xsl:value-of select="$price" />
-		</xsl:template>
+			<xsl:element name="pr:model">
+				<xsl:value-of select="$model" />
+			</xsl:element>
+			<xsl:element name="pr:date-of-issue">
+				<xsl:value-of select="$dateOfIssue" />
+			</xsl:element>
+			<xsl:element name="pr:color">
+				<xsl:value-of select="$color" />
+			</xsl:element>
+			<xsl:choose>
+				<xsl:when test="$price">
+					<xsl:element name="pr:price">
+						<xsl:value-of select="$price" />
+					</xsl:element>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:element name="pr:not-in-stock" />
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
-
-
-<!-- <xsl:template name="saveGood"> <xsl:param name="producer" /> <xsl:param 
-	name="model" /> <xsl:param name="dateOfIssue" /> <xsl:param name="color" 
-	/> <xsl:param name="price" /> <pr:good> <pr:producer> <xsl:value-of select="$producer" 
-	/> </pr:producer> <pr:model> <xsl:value-of select="$model" /> </pr:model> 
-	<pr:dateOfIssue> <xsl:value-of select="$dateOfIssue" /> </pr:dateOfIssue> 
-	<pr:color> <xsl:value-of select="$color" /> </pr:color> <xsl:choose> <xsl:when 
-	test="$price != ''"> <xsl:value-of select="$price" /> </xsl:when> <xsl:otherwise> 
-	<pr:notInStock /> </xsl:otherwise> </xsl:choose> </pr:good> </xsl:template> -->
