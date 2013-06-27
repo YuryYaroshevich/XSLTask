@@ -16,13 +16,14 @@ public final class AppConstant {
 	// I need this part of URL to build an address for redirecting
 	public static final String REDIRECT_QUERY_START = "redirect.query.start";
 
-	// parameter names for getting values from request or error message keys
-	public static final String CATEGORY_NAME = "categoryName";
-	public static final String SUBCATEGORY_NAME = "subcategoryName";
-	public static final String PRODUCER = "producer";
-	public static final String MODEL = "model";
-	public static final String DATE_OF_ISSUE = "dateOfIssue";
-	public static final String COLOR = "color";
-	public static final String PRICE = "price";
-	public static final String NOT_IN_STOCK = "notInStock";
+	// keys for error messages
+	public static final String EMPTY_PRODUCER = "empty.producer";
+	public static final String EMPTY_MODEL = "empty.model";
+	public static final String WRONG_MODEL_FORMAT = "wrong.model.format";
+	public static final String EMPTY_DATE = "empty.date";
+	public static final String WRONG_DATE_FORMAT = "wrong.date.format";
+	public static final String EMPTY_COLOR = "empty.color";
+	public static final String NOT_IN_STOCK_TO_TRUE = "not.in.stock.to.true";
+	public static final String NOT_IN_STOCK_TO_FALSE = "not.in.stock.to.false";
+	public static final String WRONG_PRICE_FORMAT = "wrong.price.format";
 }

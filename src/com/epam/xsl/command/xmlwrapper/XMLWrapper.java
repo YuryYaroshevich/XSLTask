@@ -1,16 +1,9 @@
 package com.epam.xsl.command.xmlwrapper;
 
-import static com.epam.xsl.appconstant.AppConstant.*;
-import static com.resource.PropertyGetter.getProperty;
-
-import java.io.File;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
@@ -25,16 +18,13 @@ public final class XMLWrapper {
 	private static final TransformerFactory transfFactory = TransformerFactory
 			.newInstance();
 
-	private static final ProductsDOMManipulator.ProductsDocumentWrapper productsDocWrapper = 
-			new ProductsDOMManipulator.ProductsDocumentWrapper();
-
 	private XMLWrapper() {
 	}
 
 	public static Document readFromXML() throws Exception {
 		readLock.lock();
 		try {
-			return productsDocWrapper.getProductsDocument();
+			return null;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -46,17 +36,8 @@ public final class XMLWrapper {
 			Good good) throws Exception {
 		writeLock.lock();
 		try {
-			// adding new good to Document object
-			Document document = productsDocWrapper.getProductsDocument();
-			ProductsDOMManipulator.addGoodToDocument(categName, subcategName,
-					good, document);
-			// writing to XML
-			StreamResult outputTarget = new StreamResult(new File(
-					getProperty(PRODUCTS_XML)));
-			DOMSource source = new DOMSource(document);
-			Transformer transf = transfFactory.newTransformer();
-			transf.transform(source, outputTarget);
-			return document;
+
+			return null;
 		} catch (Exception e) {
 			throw e;
 		} finally {

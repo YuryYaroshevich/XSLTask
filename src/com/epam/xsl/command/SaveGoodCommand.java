@@ -14,11 +14,23 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.command.util.TemplatesCache;
+import com.epam.xsl.util.TemplatesCache;
 
 public final class SaveGoodCommand implements Command {
 	private static final String QUERY_START = getProperty(REDIRECT_QUERY_START);
 
+	private static final String CATEGORY_NAME = "categoryName";
+	private static final String SUBCATEGORY_NAME = "subcategoryName";
+	private static final String PRODUCER = "producer";
+	private static final String MODEL = "model";
+	private static final String DATE_OF_ISSUE = "dateOfIssue";
+	private static final String COLOR = "color";
+	private static final String PRICE = "price";
+	private static final String NOT_IN_STOCK = "notInStock";
+	
+	// if checkbox wasn't checked then notInStock sets to false
+	private static final String FALSE = "false";
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
@@ -28,7 +40,7 @@ public final class SaveGoodCommand implements Command {
 			Templates validationTempl = TemplatesCache
 					.getTemplates(getProperty(VALIDATION_XSLT));
 			Transformer transf = validationTempl.newTransformer();
-
+			
 			transf.setParameter(CATEGORY_NAME, categoryName);
 			transf.setParameter(SUBCATEGORY_NAME, subcategoryName);
 			transf.setParameter(PRODUCER, req.getParameter(PRODUCER));
@@ -36,6 +48,11 @@ public final class SaveGoodCommand implements Command {
 			transf.setParameter(DATE_OF_ISSUE, req.getParameter(DATE_OF_ISSUE));
 			transf.setParameter(COLOR, req.getParameter(COLOR));
 			transf.setParameter(PRICE, req.getParameter(PRICE));
+			String notInStock = req.getParameter(NOT_IN_STOCK);
+			if (notInStock == null) {
+				notInStock = FALSE;
+			}
+			transf.setParameter(NOT_IN_STOCK, notInStock);
 			
 			StreamSource XMLSource = new StreamSource(getProperty(PRODUCTS_XML));
 			StringWriter stringWriter = new StringWriter();

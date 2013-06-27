@@ -1,4 +1,4 @@
-package com.epam.xsl.command.util;
+package com.epam.xsl.util;
 
 import java.io.File;
 import java.util.HashMap;

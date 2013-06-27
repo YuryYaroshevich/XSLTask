@@ -4,21 +4,13 @@
 
 	<xsl:output method="html" />
 
-    <xsl:param name="categoryName" />
+	<xsl:param name="categoryName" />
 	<xsl:param name="subcategoryName" />
 
-	<xsl:template match="/">
-		<xsl:call-template name="addGood">
-			<xsl:with-param name="categoryName" select="$categoryName" />
-			<xsl:with-param name="subcategoryName" select="$subcategoryName" />
-		</xsl:call-template>
-	</xsl:template>
-
-	<xsl:template name="addGood">
-		<xsl:param name="categoryName" />
-		<xsl:param name="subcategoryName" />
+	<xsl:template name="addGood" match="/">
 		<html>
 			<head>
+			    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 				<title>
 					Add good
 				</title>
@@ -38,17 +30,16 @@
 							<td>Producer:</td>
 							<td>
 								<input type="text" name="producer" />
-
 							</td>
 						</tr>
 						<tr>
-							<td>Model:</td>
+							<td>Model(LLNNN, L - letter, N - number):</td>
 							<td>
 								<input type="text" name="model" />
 							</td>
 						</tr>
 						<tr>
-							<td>Date of issue:</td>
+							<td>Date of issue(dd-MM-YYYY):</td>
 							<td>
 								<input type="text" name="dateOfIssue" />
 							</td>

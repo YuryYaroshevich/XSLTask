@@ -12,7 +12,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.command.util.TemplatesCache;
+import com.epam.xsl.util.TemplatesCache;
 
 public final class CategoriesCommand implements Command {
 	@Override
