@@ -13,7 +13,7 @@ public final class GoodValidator {
 
 	private static final String MODEL_REGEXP = "[a-zA-Z]{2}\\d{3}";
 	private static final String DATE_REGEXP = "(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(19\\d{2}|2\\d{3})";
-	private static final String NUMBER_REGEXP ="\\d+";
+	private static final String NUMBER_REGEXP = "\\d+";
 
 	private static final BundleType ERROR_MSG_BUNDLE = BundleType.ERROR_MSG_BUNDLE;
 
@@ -69,5 +69,22 @@ public final class GoodValidator {
 			return getProperty(WRONG_PRICE_FORMAT, ERROR_MSG_BUNDLE);
 		}
 		return VALID;
+	}
+
+	public static boolean isGoodValid(String msgAboutProducer,
+			String msgAboutModel, String msgAboutDate, String msgAboutColor,
+			String msgAboutShopState) {
+		if (!VALID.equals(msgAboutProducer)) {
+			return false;
+		} else if (!VALID.equals(msgAboutModel)) {
+			return false;
+		} else if (!VALID.equals(msgAboutDate)) {
+			return false;
+		} else if (!VALID.equals(msgAboutColor)) {
+			return false;
+		} else if (!VALID.equals(msgAboutShopState)) {
+			return false;
+		} 
+		return true;
 	}
 }
