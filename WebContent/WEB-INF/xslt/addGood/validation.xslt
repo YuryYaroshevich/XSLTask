@@ -4,8 +4,10 @@
 	xmlns:valid="xalan://com.epam.xsl.util.GoodValidator"
 	extension-element-prefixes="valid">
 
+	<xsl:output method="xml" />
+
 	<xsl:include href="saveGood.xslt" />
-	<xsl:include href="addGood.xslt" />
+	<xsl:include href="addGoodForm.xslt" />
 
 	<xsl:param name="categoryName" />
 	<xsl:param name="subcategoryName" />
@@ -16,6 +18,7 @@
 	<xsl:param name="price" />
 	<xsl:param name="notInStock" />
 
+	<!-- error messages -->
 	<xsl:param name="msgAboutProducer" select="valid:validateProducer($producer)" />
 	<xsl:param name="msgAboutModel" select="valid:validateModel($model)" />
 	<xsl:param name="msgAboutDate" select="valid:validateDate($dateOfIssue)" />
@@ -26,14 +29,15 @@
 		select="valid:isGoodValid($msgAboutProducer, $msgAboutModel,
 		        $msgAboutDate, $msgAboutColor, $msgAboutShopState)" />
 
-	<xsl:template match="/products">
+	<xsl:template match="/">
 		<xsl:choose>
 			<xsl:when test="$isGoodValid = 'true'">
+
 				<xsl:call-template name="saveGood" />
 			</xsl:when>
-			<!-- <xsl:otherwise>
-				<xsl:call-template name="addGood" />
-			</xsl:otherwise> -->
+			<xsl:otherwise>
+				<xsl:call-template name="addGoodForm" />
+			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 

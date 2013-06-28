@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pr="http://www.epam.com/products">
-
+	
 	<xsl:template name="saveGood" match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="node()|@*" />

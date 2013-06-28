@@ -12,7 +12,10 @@ public final class GoodValidator {
 	private static final String VALID = "";
 
 	private static final String MODEL_REGEXP = "[a-zA-Z]{2}\\d{3}";
-	private static final String DATE_REGEXP = "(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(19\\d{2}|2\\d{3})";
+	private static final String DATE_REGEXP =
+			"(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(\\d{4})";
+	private static final String CORRECT_DATE_RANGE_REGEXP = 
+			"(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(19\\d{2}|2\\d{3})";
 	private static final String NUMBER_REGEXP = "\\d+";
 
 	private static final BundleType ERROR_MSG_BUNDLE = BundleType.ERROR_MSG_BUNDLE;
@@ -39,7 +42,11 @@ public final class GoodValidator {
 	public static String validateDate(String date) {
 		if (date.isEmpty()) {
 			return getProperty(EMPTY_DATE, ERROR_MSG_BUNDLE);
-		} else if (!Pattern.matches(DATE_REGEXP, date)) {
+		} else if (Pattern.matches(DATE_REGEXP, date)) {
+			if (!Pattern.matches(CORRECT_DATE_RANGE_REGEXP, date)) {
+				return getProperty(WRONG_DATE_RANGE, ERROR_MSG_BUNDLE);
+			}
+		} else {
 			return getProperty(WRONG_DATE_FORMAT, ERROR_MSG_BUNDLE);
 		}
 		return VALID;
@@ -84,7 +91,7 @@ public final class GoodValidator {
 			return false;
 		} else if (!VALID.equals(msgAboutShopState)) {
 			return false;
-		} 
+		}
 		return true;
 	}
 }

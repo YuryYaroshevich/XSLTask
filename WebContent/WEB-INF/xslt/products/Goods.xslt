@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:pr="http://www.epam.com/products">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pr="http://www.epam.com/products">
 	<xsl:output method="html" />
 
+	<xsl:param name="categoryName" />
+	<xsl:param name="subcategoryName" />
+	
 	<xsl:template match="/pr:products">
-		<xsl:param name="categoryName" />
-		<xsl:param name="subcategoryName" />
 		<html>
 			<head>
 				<title>

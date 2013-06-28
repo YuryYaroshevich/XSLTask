@@ -22,6 +22,7 @@ public final class AppConstant {
 	public static final String WRONG_MODEL_FORMAT = "wrong.model.format";
 	public static final String EMPTY_DATE = "empty.date";
 	public static final String WRONG_DATE_FORMAT = "wrong.date.format";
+	public static final String WRONG_DATE_RANGE = "wrong.date.range";
 	public static final String EMPTY_COLOR = "empty.color";
 	public static final String NOT_IN_STOCK_TO_TRUE = "not.in.stock.to.true";
 	public static final String NOT_IN_STOCK_TO_FALSE = "not.in.stock.to.false";
