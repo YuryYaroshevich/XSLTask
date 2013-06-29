@@ -8,6 +8,9 @@
 		<html>
 			<head>
 				<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+				<script type="text/javascript" src="js/cancel.js"></script>
+				<link rel="stylesheet" href="css/addGoodForm.css" type="text/css"
+					media="screen" />
 				<style type="text/css">
 					.error-msg {
 					color: red;
@@ -88,7 +91,9 @@
 							</td>
 						</tr>
 					</table>
+					<br></br>
 					<input type="submit" value="SAVE GOOD" />
+					<input type="submit" value="CANCEL" />
 				</form>
 			</body>
 		</html>

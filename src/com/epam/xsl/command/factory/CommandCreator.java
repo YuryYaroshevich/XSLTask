@@ -3,9 +3,10 @@ package com.epam.xsl.command.factory;
 import javax.servlet.http.HttpServletRequest;
 
 import com.epam.xsl.command.AddGoodCommand;
+import com.epam.xsl.command.CancelCommand;
+import com.epam.xsl.command.CategoriesCommand;
 import com.epam.xsl.command.Command;
 import com.epam.xsl.command.GoodsCommand;
-import com.epam.xsl.command.CategoriesCommand;
 import com.epam.xsl.command.SaveGoodCommand;
 import com.epam.xsl.command.SubcategoriesCommand;
 
@@ -28,6 +29,8 @@ public final class CommandCreator {
 			return new AddGoodCommand();
 		case SAVE_GOOD: 
 			return new SaveGoodCommand();
+		case CANCEL: 
+			return new CancelCommand();
 		default:
 			return new CategoriesCommand();
 		}

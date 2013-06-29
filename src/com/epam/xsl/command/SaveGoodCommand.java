@@ -17,11 +17,14 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
 public final class SaveGoodCommand implements Command {
+	// start of URL for redirecting
 	private static final String QUERY_START = getProperty(REDIRECT_QUERY_START);
 
+	// parameter names for taking values from request
 	private static final String CATEGORY_NAME = "categoryName";
 	private static final String SUBCATEGORY_NAME = "subcategoryName";
 	private static final String PRODUCER = "producer";
@@ -33,25 +36,32 @@ public final class SaveGoodCommand implements Command {
 
 	// if checkbox wasn't checked then notInStock sets to false
 	private static final String FALSE = "false";
+	// I use this constant for determining result of validation
+	private static final String HTML = "html";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
+		Synchronizer.writeLock().lock();
 		try {
 			Templates validationTempl = TemplatesCache
 					.getTemplates(getProperty(VALIDATION_XSLT));
 			Transformer transf = validationTempl.newTransformer();
 			setParametersInTransf(transf, req);
 			String resultingInfo = resultOfTransformation(transf);
-			if (resultingInfo.substring(1, 5).equals("html")) {
+			if (resultingInfo.substring(1, 5).equals(HTML)) {
+				// Validation didn't passed; form with error messages.
 				resp.getWriter().append(resultingInfo);
 			} else {
+				// Validation passed; list of goods with new good.
 				writeToXML(resultingInfo);
 				listOfGoodsToPage(req, resp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
+		} finally {
+			Synchronizer.writeLock().unlock();
 		}
 	}
 
@@ -76,9 +86,10 @@ public final class SaveGoodCommand implements Command {
 			throws Exception {
 		StringWriter stringWriter = null;
 		try {
-			StreamSource XMLSource = new StreamSource(getProperty(PRODUCTS_XML));
+			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
 			stringWriter = new StringWriter();
-			transf.transform(XMLSource, new StreamResult(stringWriter));
+			StreamResult output = new StreamResult(stringWriter);
+			transf.transform(xmlSource, output);
 			return stringWriter.toString();
 		} finally {
 			stringWriter.close();
@@ -103,8 +114,8 @@ public final class SaveGoodCommand implements Command {
 		Templates goodsTempl = TemplatesCache
 				.getTemplates(getProperty(GOODS_XSLT));
 		Transformer transf = goodsTempl.newTransformer();
-		StreamResult toPage = new StreamResult(resp.getWriter());
 		StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
+		StreamResult toPage = new StreamResult(resp.getWriter());
 		transf.transform(xmlSource, toPage);
 	}
 

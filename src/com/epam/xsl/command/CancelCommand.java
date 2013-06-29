@@ -12,13 +12,13 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.util.TemplatesCache;
 import com.epam.xsl.util.Synchronizer;
+import com.epam.xsl.util.TemplatesCache;
 
-public final class GoodsCommand implements Command {
-	// parameter names
-	private static final String SUBCATEGORY_NAME = "subcategoryName";
+public final class CancelCommand implements Command {
+	// parameter names for taking values from request
 	private static final String CATEGORY_NAME = "categoryName";
+	private static final String SUBCATEGORY_NAME = "subcategoryName";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
@@ -29,9 +29,9 @@ public final class GoodsCommand implements Command {
 					.getTemplates(getProperty(GOODS_XSLT));
 			Transformer transf = goodsTempl.newTransformer();
 			// sets parameters
+			transf.setParameter(CATEGORY_NAME, req.getParameter(CATEGORY_NAME));
 			transf.setParameter(SUBCATEGORY_NAME,
 					req.getParameter(SUBCATEGORY_NAME));
-			transf.setParameter(CATEGORY_NAME, req.getParameter(CATEGORY_NAME));
 			// prepare transformation
 			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
 			StreamResult toPage = new StreamResult(resp.getWriter());

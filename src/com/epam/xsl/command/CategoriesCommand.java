@@ -12,22 +12,26 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
 public final class CategoriesCommand implements Command {
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
+	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
+		Synchronizer.readLock().lock();
 		try {
 			Templates categoriesTempl = TemplatesCache
 					.getTemplates(getProperty(CATEGORIES_XSLT));
 			Transformer transf = categoriesTempl.newTransformer();
 			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
-			StreamResult output = new StreamResult(response.getWriter());
-			transf.transform(xmlSource, output);
+			StreamResult toPage = new StreamResult(resp.getWriter());
+			transf.transform(xmlSource, toPage);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
+		} finally {
+			Synchronizer.readLock().unlock();
 		}
 	}
 }

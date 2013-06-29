@@ -12,6 +12,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
 public final class SubcategoriesCommand implements Command {
@@ -21,6 +22,7 @@ public final class SubcategoriesCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request,
 			HttpServletResponse response) throws CommandException {
+		Synchronizer.readLock().lock();
 		try {
 			Templates subcategoriesTempl = TemplatesCache
 					.getTemplates(getProperty(SUBCATEGORIES_XSLT));
@@ -33,6 +35,8 @@ public final class SubcategoriesCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
+		} finally {
+			Synchronizer.readLock().unlock();
 		}
 	}
 }

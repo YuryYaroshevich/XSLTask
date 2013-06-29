@@ -13,6 +13,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
 public final class AddGoodCommand implements Command {
@@ -21,24 +22,27 @@ public final class AddGoodCommand implements Command {
 	private static final String SUBCATEGORY_NAME = "subcategoryName";
 
 	@Override
-	public void execute(HttpServletRequest request,
-			HttpServletResponse response) throws CommandException {
+	public void execute(HttpServletRequest req, HttpServletResponse resp)
+			throws CommandException {
+		Synchronizer.readLock().lock();
 		try {
 			Templates addGood = TemplatesCache
 					.getTemplates(getProperty(ADD_GOOD_XSLT));
 			Transformer transf = addGood.newTransformer();
 			// sets parameters
 			transf.setParameter(CATEGORY_NAME,
-					request.getParameter(CATEGORY_NAME));
+					req.getParameter(CATEGORY_NAME));
 			transf.setParameter(SUBCATEGORY_NAME,
-					request.getParameter(SUBCATEGORY_NAME));
+					req.getParameter(SUBCATEGORY_NAME));
 			// prepare transformation
-			StreamSource source = new StreamSource(getProperty(PRODUCTS_XML));
-			Result output = new StreamResult(response.getWriter());
-			transf.transform(source, output);
+			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
+			Result output = new StreamResult(resp.getWriter());
+			transf.transform(xmlSource, output);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
+		} finally {
+			Synchronizer.readLock().unlock();
 		}
 	}
 }
