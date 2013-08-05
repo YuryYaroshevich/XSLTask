@@ -1,7 +1,8 @@
-input[value='SAVE GOOD'] {
+#save {
 	margin-left: 96px;
 }
 
-input[value='CANCEL'] {
+#cancel {
 	margin-left: 20px;
 }
+

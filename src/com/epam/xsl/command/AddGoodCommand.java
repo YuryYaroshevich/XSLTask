@@ -24,7 +24,7 @@ public final class AddGoodCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
-		Synchronizer.readLock().lock();
+		Synchronizer.getReadLock().lock();
 		try {
 			Templates addGood = TemplatesCache
 					.getTemplates(getProperty(ADD_GOOD_XSLT));
@@ -42,7 +42,7 @@ public final class AddGoodCommand implements Command {
 			e.printStackTrace();
 			throw new CommandException(e);
 		} finally {
-			Synchronizer.readLock().unlock();
+			Synchronizer.getReadLock().unlock();
 		}
 	}
 }

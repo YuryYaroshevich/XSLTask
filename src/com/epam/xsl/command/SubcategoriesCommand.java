@@ -22,7 +22,7 @@ public final class SubcategoriesCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request,
 			HttpServletResponse response) throws CommandException {
-		Synchronizer.readLock().lock();
+		Synchronizer.getReadLock().lock();
 		try {
 			Templates subcategoriesTempl = TemplatesCache
 					.getTemplates(getProperty(SUBCATEGORIES_XSLT));
@@ -36,7 +36,7 @@ public final class SubcategoriesCommand implements Command {
 			e.printStackTrace();
 			throw new CommandException(e);
 		} finally {
-			Synchronizer.readLock().unlock();
+			Synchronizer.getReadLock().unlock();
 		}
 	}
 }

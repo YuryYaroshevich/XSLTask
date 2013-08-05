@@ -11,11 +11,11 @@ public final class Synchronizer {
 	private Synchronizer() {
 	}
 
-	public static Lock readLock() {
+	public static Lock getReadLock() {
 		return readLock;
 	}
 
-	public static Lock writeLock() {
+	public static Lock getWriteLock() {
 		return writeLock;
 	}
 }

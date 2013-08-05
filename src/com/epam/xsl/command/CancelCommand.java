@@ -23,7 +23,7 @@ public final class CancelCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
-		Synchronizer.readLock().lock();
+		Synchronizer.getReadLock().lock();
 		try {
 			Templates goodsTempl = TemplatesCache
 					.getTemplates(getProperty(GOODS_XSLT));
@@ -40,7 +40,7 @@ public final class CancelCommand implements Command {
 			e.printStackTrace();
 			throw new CommandException(e);
 		} finally {
-			Synchronizer.readLock().unlock();
+			Synchronizer.getReadLock().unlock();
 		}
 	}
 }

@@ -42,7 +42,7 @@ public final class SaveGoodCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
-		Synchronizer.writeLock().lock();
+		Synchronizer.getWriteLock().lock();
 		try {
 			Templates validationTempl = TemplatesCache
 					.getTemplates(getProperty(VALIDATION_XSLT));
@@ -61,7 +61,7 @@ public final class SaveGoodCommand implements Command {
 			e.printStackTrace();
 			throw new CommandException(e);
 		} finally {
-			Synchronizer.writeLock().unlock();
+			Synchronizer.getWriteLock().unlock();
 		}
 	}
 

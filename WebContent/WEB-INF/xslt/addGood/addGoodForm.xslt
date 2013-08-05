@@ -92,8 +92,8 @@
 						</tr>
 					</table>
 					<br></br>
-					<input type="submit" value="SAVE GOOD" />
-					<input type="submit" value="CANCEL" />
+					<input id="save" type="submit" value="SAVE GOOD" />
+					<input id="cancel" type="submit" value="CANCEL" />
 				</form>
 			</body>
 		</html>
