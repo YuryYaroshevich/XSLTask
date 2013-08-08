@@ -14,7 +14,8 @@
 			<head>
 				<link rel="stylesheet" href="css/pushToRight.css" type="text/css"
 					media="screen" />
-					
+				<link rel="stylesheet" href="css/goods.css" type="text/css"
+					media="screen" />
 				<title>
 					Goods of
 					<xsl:value-of select="$subcategoryName" />
@@ -25,18 +26,30 @@
 					Goods of
 					<xsl:value-of select="$subcategoryName" />
 				</h1>
-				<xsl:apply-templates
-					select="pr:category[@name=$categoryName]/
+				<table class="push-to-right">
+					<tr>
+						<th>Producer</th>
+						<th>Model</th>
+						<th>Date of issue</th>
+						<th>Color</th>
+						<th>Price</th>
+					</tr>
+					<xsl:apply-templates
+						select="pr:category[@name=$categoryName]/
 					        pr:subcategory[@name=$subcategoryName]/pr:good" />
-				<br></br>	        
-				<form action="controller">
-					<input type="hidden" name="command" value="ADD_GOOD" />
-					<input type="hidden" name="categoryName" value="{$categoryName}" />
-					<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />
-					<input class="push-to-right" type="submit" value="ADD PRODUCT" />
-				</form>
-				<a class="push-to-right"
-					href="controller?command=SUBCATEGORIES&amp;categoryName={$categoryName}">BACK</a>
+				</table>
+				<div id="control-buttons">
+					<form action="controller" method="POST">
+						<input type="hidden" name="command" value="ADD_GOOD" />
+						<input type="hidden" name="categoryName" value="{$categoryName}" />
+						<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />
+						<input class="push-to-right" type="submit" value="ADD PRODUCT" />
+					</form>
+					<form action="controller?command=SUBCATEGORIES" method="POST">
+						<input type="hidden" name="categoryName" value="{$categoryName}" />
+						<input type="submit" value="BACK" class="push-to-right" />
+					</form>
+				</div>
 			</body>
 		</html>
 	</xsl:template>

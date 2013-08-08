@@ -1,4 +1,4 @@
-package com.epam.xsl.appconstant;
+package com.epam.xsl.constant;
 
 public final class AppConstant {
 	private AppConstant() {
@@ -27,4 +27,8 @@ public final class AppConstant {
 	public static final String NOT_IN_STOCK_TO_TRUE = "not.in.stock.to.true";
 	public static final String NOT_IN_STOCK_TO_FALSE = "not.in.stock.to.false";
 	public static final String WRONG_PRICE_FORMAT = "wrong.price.format";
+
+	// parameter names for taking values from request
+	public static final String CATEGORY_NAME = "categoryName";
+	public static final String SUBCATEGORY_NAME = "subcategoryName";
 }

@@ -24,7 +24,9 @@
 					<xsl:apply-templates
 						select="pr:category[@name=$categoryName]/pr:subcategory" />
 				</ul>
-				<a class="push-to-right" href="controller?command=CATEGORIES">BACK</a>
+				<form action="controller?command=CATEGORIES" method="POST">
+					<input type="submit" value="BACK" class="push-to-right" />
+				</form>
 			</body>
 		</html>
 	</xsl:template>

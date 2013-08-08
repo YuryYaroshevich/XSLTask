@@ -7,6 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.xml.transform.Templates;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
@@ -22,7 +23,7 @@ public final class TemplatesCache {
 	private TemplatesCache() {
 	}
 
-	public static Templates getTemplates(String xsltPath)
+	public static Transformer getCorrespondTransf(String xsltPath)
 			throws TransformerConfigurationException {
 		File xsltFile = new File(xsltPath);
 		TemplatesWrapper templ = cache.get(xsltPath);
@@ -33,15 +34,13 @@ public final class TemplatesCache {
 			if (lastModified > templ.lastModified) {
 				templ = null;
 			}
+		} else {
+			templ = createNewEntryInCache(lastModified, xsltPath);
 		}
-
-		if (templ == null) {
-			templ = newEntryInCache(lastModified, xsltPath);
-		}
-		return templ.templates;
+		return templ.templates.newTransformer();
 	}
 
-	private static TemplatesWrapper newEntryInCache(long lastModified,
+	private static TemplatesWrapper createNewEntryInCache(long lastModified,
 			String key) throws TransformerConfigurationException {
 		lock.lock();
 		try {

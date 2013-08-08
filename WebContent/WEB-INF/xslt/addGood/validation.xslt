@@ -4,8 +4,6 @@
 	xmlns:valid="xalan://com.epam.xsl.util.GoodValidator"
 	extension-element-prefixes="valid">
 
-	<xsl:output method="xml" />
-
 	<xsl:include href="saveGood.xslt" />
 	<xsl:include href="addGoodForm.xslt" />
 
@@ -28,11 +26,10 @@
 	<xsl:param name="isGoodValid"
 		select="valid:isGoodValid($msgAboutProducer, $msgAboutModel,
 		        $msgAboutDate, $msgAboutColor, $msgAboutShopState)" />
-
+		        
 	<xsl:template match="/">
 		<xsl:choose>
 			<xsl:when test="$isGoodValid = 'true'">
-
 				<xsl:call-template name="saveGood" />
 			</xsl:when>
 			<xsl:otherwise>

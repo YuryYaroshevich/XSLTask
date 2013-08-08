@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pr="http://www.epam.com/products">
-
-	<xsl:output method="html" />
-
+		
 	<xsl:template name="addGoodForm">
 		<html>
 			<head>
@@ -26,7 +24,7 @@
 					<xsl:value-of select="$subcategoryName" />
 					subcategory
 				</h2>
-				<form action="controller">
+				<form action="controller" method="POST">
 					<input type="hidden" name="command" value="SAVE_GOOD" />
 					<input type="hidden" name="categoryName" value="{$categoryName}" />
 					<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />

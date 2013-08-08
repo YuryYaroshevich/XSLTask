@@ -11,7 +11,7 @@ import com.epam.xsl.command.Command;
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.command.factory.CommandCreator;
 
-public final class Controller extends HttpServlet {
+public final class ProductsXSLController extends HttpServlet {
 	private static final long serialVersionUID = 7688907932488576018L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

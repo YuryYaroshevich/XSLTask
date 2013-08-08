@@ -5,35 +5,29 @@
 
 	<!-- match the <good> element -->
 	<xsl:template match="pr:good">
-		<table class="push-to-right">
-			<tr>
-				<td>Producer:</td>
-				<td><xsl:value-of select="pr:producer" /></td>
-			</tr>
-			<tr>
-				<td>Model:</td>
-				<td><xsl:value-of select="pr:model" /></td>
-			</tr>
-			<tr>
-				<td>Date of issue:</td>
-				<td><xsl:value-of select="pr:date-of-issue" /></td>
-			</tr>
-			<tr>
-				<td>Color:</td>
-				<td><xsl:value-of select="pr:color" /></td>
-			</tr>
-			<tr>
-				<xsl:choose>
-					<xsl:when test="pr:price">
-						<td>Price:</td>
-						<td><xsl:value-of select="pr:price" /></td>
-					</xsl:when>
-					<xsl:otherwise>
-						<td>Not in stock</td>
-					</xsl:otherwise>
-				</xsl:choose>
-			</tr>
-		</table>
-		<br></br>
+		<tr>
+			<td>
+				<xsl:value-of select="pr:producer" />
+			</td>
+			<td>
+				<xsl:value-of select="pr:model" />
+			</td>
+			<td>
+				<xsl:value-of select="pr:date-of-issue" />
+			</td>
+			<td>
+				<xsl:value-of select="pr:color" />
+			</td>
+			<xsl:choose>
+				<xsl:when test="pr:price">
+					<td>
+						<xsl:value-of select="pr:price" />
+					</td>
+				</xsl:when>
+				<xsl:otherwise>
+					<td>Not in stock</td>
+				</xsl:otherwise>
+			</xsl:choose>
+		</tr>
 	</xsl:template>
 </xsl:stylesheet>
