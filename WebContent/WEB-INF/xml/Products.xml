@@ -1,47 +1,54 @@
-<html xmlns:pr="http://www.epam.com/products">
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/jquery-1.9.1.js" type="text/javascript"></script><script src="js/cancel.js" type="text/javascript"></script>
-<link media="screen" type="text/css" href="css/addGoodForm.css" rel="stylesheet">
-<style type="text/css">
-					.error-msg {
-					color: red;
-					}
-				</style>
-<title>
-					Add good
-				</title>
-</head>
-<body>
-<h2>
-					Add good in
-					fruit ice-cream
-					subcategory
-				</h2>
-<form method="POST" action="controller">
-<input value="SAVE_GOOD" name="command" type="hidden"><input value="ice-cream" name="categoryName" type="hidden"><input value="fruit ice-cream" name="subcategoryName" type="hidden">
-<table>
-<tr>
-<td>Producer:</td><td><input value="" name="producer" type="text"></td><td class="error-msg">Producer field is empty!</td>
-</tr>
-<tr>
-<td>Model(LLNNN, L - letter, N - number):</td><td><input value="" name="model" type="text"></td><td class="error-msg">Model field is empty!</td>
-</tr>
-<tr>
-<td>Date of issue(dd-MM-YYYY):</td><td><input value="" name="dateOfIssue" type="text"></td><td class="error-msg">Date field is empty!</td>
-</tr>
-<tr>
-<td>Color:</td><td><input value="" name="color" type="text"></td><td class="error-msg">Color field is empty!</td>
-</tr>
-<tr>
-<td>Price:</td><td><input value="" name="price" type="text"></td><td class="error-msg">If price is empty then Not in stock must be checked!</td>
-</tr>
-<tr>
-<td>Not in stock:</td><td><input value="true" name="notInStock" type="checkbox"></td>
-</tr>
-</table>
-<br>
-<input value="SAVE GOOD" type="submit" id="save"><input value="CANCEL" type="submit" id="cancel">
-</form>
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?><pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
+	<pr:category name="car">
+		<pr:subcategory name="taxi">
+			<pr:good>
+				<pr:producer>dgggdfd</pr:producer>
+				<pr:model>ik565</pr:model>
+				<pr:date-of-issue>04-11-2012</pr:date-of-issue>
+				<pr:color>yellow</pr:color>
+				<pr:not-in-stock/>
+			</pr:good>
+			<pr:good>
+				<pr:producer>reter</pr:producer>
+				<pr:model>Yu545</pr:model>
+				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
+				<pr:color>sfsdgs</pr:color>
+				<pr:price>345</pr:price>
+			</pr:good>
+		</pr:subcategory>
+		<pr:subcategory name="cargoTaxi">
+			<pr:good>
+				<pr:producer>dgdfg</pr:producer>
+				<pr:model>tY121</pr:model>
+				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
+				<pr:color>blue</pr:color>
+				<pr:price>1231124</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>vasya</pr:producer>
+				<pr:model>sd231</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>red</pr:color>
+				<pr:price>123</pr:price>
+			</pr:good>
+		</pr:subcategory>
+	</pr:category>
+	<pr:category name="ice-cream">
+		<pr:subcategory name="fruit ice-cream">
+			<pr:good>
+				<pr:producer>ssg</pr:producer>
+				<pr:model>IC321</pr:model>
+				<pr:date-of-issue>21-12-2001</pr:date-of-issue>
+				<pr:color>dfg</pr:color>
+				<pr:price>353</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>fd343</pr:producer>
+				<pr:model>fd343</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>sgsgsdg</pr:color>
+				<pr:not-in-stock/>
+			</pr:good>
+		<pr:good><pr:producer/><pr:model/><pr:date-of-issue/><pr:color/><pr:not-in-stock/></pr:good></pr:subcategory>
+	</pr:category>
+</pr:products>

@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
+import com.epam.xsl.util.GoodValidator;
 import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
@@ -28,18 +28,18 @@ public final class SaveGoodCommand implements Command {
 	// start of URL for redirecting
 	private static final String QUERY_START = getProperty(REDIRECT_QUERY_START);
 
-	// parameter names for taking values from request
+	// parameter names for taking values from request and setting values in
+	// transformer
 	private static final String PRODUCER = "producer";
 	private static final String MODEL = "model";
 	private static final String DATE_OF_ISSUE = "dateOfIssue";
 	private static final String COLOR = "color";
 	private static final String PRICE = "price";
 	private static final String NOT_IN_STOCK = "notInStock";
+	private static final String VALIDATOR = "validator";
 
 	// if checkbox wasn't checked then notInStock sets to false
 	private static final String FALSE = "false";
-	// I use this constant for determining result of validation
-	private static final String HTML_REGEXP = "^ *<html(\\p{Punct}|\\w| )*";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
@@ -48,8 +48,8 @@ public final class SaveGoodCommand implements Command {
 		try {
 			Transformer transf = TemplatesCache
 					.getCorrespondTransf(getProperty(VALIDATION_XSLT));
-			setParametersInTransf(transf, req);
-			
+			GoodValidator validator = setParametersInTransf(transf, req);
+
 			// read products.xml and add new good to buffer by applying
 			// transformation
 			Synchronizer.getReadLock().lock();
@@ -62,16 +62,16 @@ public final class SaveGoodCommand implements Command {
 				resultingInfo = resultOfTransformation(transf);
 			} finally {
 				Synchronizer.getReadLock().unlock();
-			}	
+			}
 			
 			// check the result of transformation
-			if (Pattern.matches(HTML_REGEXP, resultingInfo)) {
-				// Validation didn't passed; form with error messages
-				resp.getWriter().append(resultingInfo);
-			} else {
+			if (validator.isGoodValid()) {
 				// Validation passed; list of goods with new good.
 				writeToXML(resultingInfo, xml, lastModified, transf);
 				listOfGoodsToPage(req, resp);
+			} else {
+				// Validation didn't passed; form with error messages
+				resp.getWriter().append(resultingInfo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,8 +88,10 @@ public final class SaveGoodCommand implements Command {
 		}
 	}
 
-	private static void setParametersInTransf(Transformer transf,
+	private static GoodValidator setParametersInTransf(Transformer transf,
 			HttpServletRequest req) {
+		GoodValidator validator = new GoodValidator();
+		transf.setParameter(VALIDATOR, validator);
 		transf.setParameter(CATEGORY_NAME, req.getParameter(CATEGORY_NAME));
 		transf.setParameter(SUBCATEGORY_NAME,
 				req.getParameter(SUBCATEGORY_NAME));
@@ -103,6 +105,8 @@ public final class SaveGoodCommand implements Command {
 			notInStock = FALSE;
 		}
 		transf.setParameter(NOT_IN_STOCK, notInStock);
+
+		return validator;
 	}
 
 	private static String resultOfTransformation(Transformer transf)
@@ -127,6 +131,9 @@ public final class SaveGoodCommand implements Command {
 		Synchronizer.getWriteLock().lock();
 		try {
 			if (lastModified != xml.lastModified()) {
+				GoodValidator validator = (GoodValidator) transf
+						.getParameter(VALIDATOR);
+				validator.reset();
 				information = resultOfTransformation(transf);
 			}
 			fileWriter = new FileWriter(xml);

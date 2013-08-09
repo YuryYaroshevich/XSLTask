@@ -7,6 +7,8 @@
 	<xsl:include href="saveGood.xslt" />
 	<xsl:include href="addGoodForm.xslt" />
 
+	<xsl:param name="validator" />
+
 	<xsl:param name="categoryName" />
 	<xsl:param name="subcategoryName" />
 	<xsl:param name="producer" />
@@ -17,19 +19,26 @@
 	<xsl:param name="notInStock" />
 
 	<!-- error messages -->
-	<xsl:param name="msgAboutProducer" select="valid:validateProducer($producer)" />
-	<xsl:param name="msgAboutModel" select="valid:validateModel($model)" />
-	<xsl:param name="msgAboutDate" select="valid:validateDate($dateOfIssue)" />
-	<xsl:param name="msgAboutColor" select="valid:validateColor($color)" />
+	<xsl:param name="msgAboutProducer"
+		select="valid:validateProducer($validator, $producer)" />
+		            
+	<xsl:param name="msgAboutModel" select="valid:validateModel($validator, $model)" />
+	
+	<xsl:param name="msgAboutDate"
+		select="valid:validateDate($validator, $dateOfIssue)" />
+		
+	<xsl:param name="msgAboutColor" select="valid:valieColor($validator, $color)" />
+	
 	<xsl:param name="msgAboutShopState"
-		select="valid:validateShopState($price, $notInStock)" />
-	<xsl:param name="isGoodValid"
-		select="valid:isGoodValid($msgAboutProducer, $msgAboutModel,
-		        $msgAboutDate, $msgAboutColor, $msgAboutShopState)" />
-		        
+		select="valid:validateShopState($validator, $price, $notInStock)" />
+		
+	<xsl:param name="isGoodValid" select="valid:isGoodValid($validator)" />	<!-- valid:isGoodValid($validator) -->
+	
+	
+	<!-- $msgAboutProducer, $msgAboutModel, $msgAboutDate, $msgAboutColor, $msgAboutShopState -->
 	<xsl:template match="/">
 		<xsl:choose>
-			<xsl:when test="$isGoodValid = 'true'">
+			<xsl:when test="$isGoodValid = true()">
 				<xsl:call-template name="saveGood" />
 			</xsl:when>
 			<xsl:otherwise>
