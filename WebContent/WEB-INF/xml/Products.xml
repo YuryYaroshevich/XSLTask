@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<pr:products xmlns:pr="http://www.epam.com/products"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.epam.com/products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
@@ -6,7 +9,7 @@
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2012</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
-				<pr:not-in-stock/>
+				<pr:not-in-stock />
 			</pr:good>
 			<pr:good>
 				<pr:producer>reter</pr:producer>
@@ -14,6 +17,13 @@
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>sfsdgs</pr:color>
 				<pr:price>345</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>wre</pr:producer>
+				<pr:model>er345</pr:model>
+				<pr:date-of-issue>12-12-2001</pr:date-of-issue>
+				<pr:color>sdfsdfs</pr:color>
+				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
@@ -31,6 +41,13 @@
 				<pr:color>red</pr:color>
 				<pr:price>123</pr:price>
 			</pr:good>
+			<pr:good>
+				<pr:producer>sererterterter</pr:producer>
+				<pr:model>er343</pr:model>
+				<pr:date-of-issue>12-12-2001</pr:date-of-issue>
+				<pr:color>sdfdsfs</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
 		</pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
@@ -47,8 +64,22 @@
 				<pr:model>fd343</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
 				<pr:color>sgsgsdg</pr:color>
-				<pr:not-in-stock/>
+				<pr:not-in-stock />
 			</pr:good>
-		<pr:good><pr:producer/><pr:model/><pr:date-of-issue/><pr:color/><pr:not-in-stock/></pr:good></pr:subcategory>
+			<pr:good>
+				<pr:producer>ere</pr:producer>
+				<pr:model>er323</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>sdfds</pr:color>
+				<pr:price>34534</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>df</pr:producer>
+				<pr:model>df433</pr:model>
+				<pr:date-of-issue>12-12-2010</pr:date-of-issue>
+				<pr:color>sdf</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
+		</pr:subcategory>
 	</pr:category>
 </pr:products>

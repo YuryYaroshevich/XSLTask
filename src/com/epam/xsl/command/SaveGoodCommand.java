@@ -10,7 +10,6 @@ import static com.epam.xsl.resource.PropertyGetter.getProperty;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +43,6 @@ public final class SaveGoodCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
-		StringWriter stringWriter = null;
 		try {
 			Transformer transf = TemplatesCache
 					.getCorrespondTransf(getProperty(VALIDATION_XSLT));
@@ -76,16 +74,7 @@ public final class SaveGoodCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
-		} finally {
-			try {
-				if (stringWriter != null) {
-					stringWriter.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				throw new CommandException(e);
-			}
-		}
+		} 
 	}
 
 	private static GoodValidator setParametersInTransf(Transformer transf,
@@ -121,7 +110,9 @@ public final class SaveGoodCommand implements Command {
 			return stringWriter.toString();
 		} finally {
 			Synchronizer.getReadLock().unlock();
-			stringWriter.close();
+			if (stringWriter != null) {
+				stringWriter.close();
+			}			
 		}
 	}
 
@@ -130,7 +121,7 @@ public final class SaveGoodCommand implements Command {
 		FileWriter fileWriter = null;
 		Synchronizer.getWriteLock().lock();
 		try {
-			if (lastModified != xml.lastModified()) {
+			if (12 != xml.lastModified()) {
 				GoodValidator validator = (GoodValidator) transf
 						.getParameter(VALIDATOR);
 				validator.reset();
@@ -140,7 +131,9 @@ public final class SaveGoodCommand implements Command {
 			fileWriter.append(information);
 		} finally {
 			Synchronizer.getWriteLock().unlock();
-			fileWriter.close();
+			if (fileWriter != null) {
+				fileWriter.close();
+			}			
 		}
 	}
 

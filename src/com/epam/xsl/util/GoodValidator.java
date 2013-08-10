@@ -32,7 +32,6 @@ public final class GoodValidator {
 	}
 
 	public String validateProducer(String producer) {
-		System.out.println("xer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (producer.isEmpty()) {
 			setGoodValid(false);
 			return getProperty(EMPTY_PRODUCER);
@@ -41,7 +40,6 @@ public final class GoodValidator {
 	}
 
 	public String validateModel(String model) {
-		System.out.println("xer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (model.isEmpty()) {
 			setGoodValid(false);
 			return getProperty(EMPTY_MODEL);
@@ -53,7 +51,6 @@ public final class GoodValidator {
 	}
 
 	public String validateDate(String date) {
-		System.out.println("xer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (date.isEmpty()) {
 			setGoodValid(false);
 			return getProperty(EMPTY_DATE);
@@ -70,7 +67,6 @@ public final class GoodValidator {
 	}
 
 	public String validateColor(String color) {
-		System.out.println("xer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (color.isEmpty()) {
 			setGoodValid(false);
 			return getProperty(EMPTY_COLOR);
@@ -81,7 +77,6 @@ public final class GoodValidator {
 	// Checks price and if it empty, checks notInStock to be true.
 	// If price is correct then notInStock should be false.
 	public String validateShopState(String price, String notInStock) {
-		System.out.println("xer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (price.isEmpty()) {
 			// then notInStock should be true
 			if (!Boolean.valueOf(notInStock)) {
@@ -100,25 +95,8 @@ public final class GoodValidator {
 		}
 		return VALID;
 	}
-	
-	/*String msgAboutProducer,
-	String msgAboutModel, String msgAboutDate, String msgAboutColor,
-	String msgAboutShopState*/
 
 	public boolean isGoodValid() {
-		/*if (!VALID.equals(msgAboutProducer)) {
-			return false;
-		} else if (!VALID.equals(msgAboutModel)) {
-			return false;
-		} else if (!VALID.equals(msgAboutDate)) {
-			return false;
-		} else if (!VALID.equals(msgAboutColor)) {
-			return false;
-		} else if (!VALID.equals(msgAboutShopState)) {
-			return false;
-		}
-		return true;*/
-		System.out.println(isGoodValid);
 		return isGoodValid;
 	}
 }
