@@ -48,6 +48,13 @@
 				<pr:color>sdfdsfs</pr:color>
 				<pr:not-in-stock />
 			</pr:good>
+			<pr:good>
+				<pr:producer>dfdf</pr:producer>
+				<pr:model>df433</pr:model>
+				<pr:date-of-issue>12-12-2202</pr:date-of-issue>
+				<pr:color>sdf</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
 		</pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
@@ -78,6 +85,13 @@
 				<pr:model>df433</pr:model>
 				<pr:date-of-issue>12-12-2010</pr:date-of-issue>
 				<pr:color>sdf</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
+			<pr:good>
+				<pr:producer>gdfgfd</pr:producer>
+				<pr:model>fg433</pr:model>
+				<pr:date-of-issue>12-12-2022</pr:date-of-issue>
+				<pr:color>dfg</pr:color>
 				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>

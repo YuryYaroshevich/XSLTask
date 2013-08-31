@@ -9,3 +9,7 @@ td, th {
 div#control-buttons {
 	margin-top: 20px;
 }
+
+div#control-buttons form {
+	float: left;
+}

@@ -11,25 +11,22 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.util.Synchronizer;
+import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.TemplatesCache;
 
 public final class CategoriesCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
-		Synchronizer.getReadLock().lock();
 		try {
 			Transformer transf = TemplatesCache
 					.getCorrespondTransf(getProperty(CATEGORIES_XSLT));
 			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
 			StreamResult toPage = new StreamResult(resp.getWriter());
-			transf.transform(xmlSource, toPage);
+			ProductsXmlIO.readXML(transf, xmlSource, toPage);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
-		} finally {
-			Synchronizer.getReadLock().unlock();
-		}
+		} 
 	}
 }

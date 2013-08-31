@@ -77,21 +77,19 @@
 						<tr>
 							<td>Not in stock:</td>
 							<td>
-								<xsl:choose>
-									<xsl:when test="$notInStock = 'true'">
-										<input type="checkbox" name="notInStock" value="true"
-											checked="true" />
-									</xsl:when>
-									<xsl:otherwise>
-										<input type="checkbox" name="notInStock" value="true" />
-									</xsl:otherwise>
-								</xsl:choose>
+								<input type="checkbox" name="notInStock" value="true">
+									<xsl:if test="$notInStock = 'true'">
+										<xsl:attribute name="checked">
+									          <xsl:text>true</xsl:text>
+									    </xsl:attribute>
+									</xsl:if>
+								</input>
 							</td>
 						</tr>
 					</table>
 					<br></br>
-					<input id="save" type="submit" value="SAVE GOOD" />
-					<input id="cancel" type="submit" value="CANCEL" />
+					<input id="save" type="submit" value="SAVE" />
+					<input id="cancel" type="submit" value="CANCEL" />					
 				</form>
 			</body>
 		</html>

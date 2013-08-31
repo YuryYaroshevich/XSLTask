@@ -31,4 +31,7 @@ public final class AppConstant {
 	// parameter names for taking values from request
 	public static final String CATEGORY_NAME = "categoryName";
 	public static final String SUBCATEGORY_NAME = "subcategoryName";
+	
+	// parameter name for setting validator in transformer
+	public static final String VALIDATOR = "validator";
 }

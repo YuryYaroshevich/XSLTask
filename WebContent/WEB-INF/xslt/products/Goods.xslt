@@ -39,15 +39,15 @@
 					        pr:subcategory[@name=$subcategoryName]/pr:good" />
 				</table>
 				<div id="control-buttons">
+					<form action="controller?command=SUBCATEGORIES" method="POST">
+						<input type="hidden" name="categoryName" value="{$categoryName}" />
+						<input type="submit" value="BACK" class="push-to-right" />
+					</form>
 					<form action="controller" method="POST">
 						<input type="hidden" name="command" value="ADD_GOOD" />
 						<input type="hidden" name="categoryName" value="{$categoryName}" />
 						<input type="hidden" name="subcategoryName" value="{$subcategoryName}" />
-						<input class="push-to-right" type="submit" value="ADD PRODUCT" />
-					</form>
-					<form action="controller?command=SUBCATEGORIES" method="POST">
-						<input type="hidden" name="categoryName" value="{$categoryName}" />
-						<input type="submit" value="BACK" class="push-to-right" />
+						<input class="push-to-right" type="submit" value="ADD" />
 					</form>
 				</div>
 			</body>
