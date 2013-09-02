@@ -121,7 +121,7 @@ public final class SaveGoodCommand implements Command {
 		FileWriter fileWriter = null;
 		Synchronizer.getWriteLock().lock();
 		try {
-			if (12 != xml.lastModified()) {
+			if (lastModified != xml.lastModified()) {
 				GoodValidator validator = (GoodValidator) transf
 						.getParameter(VALIDATOR);
 				validator.reset();

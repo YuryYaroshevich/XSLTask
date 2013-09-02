@@ -18,13 +18,6 @@
 				<pr:color>sfsdgs</pr:color>
 				<pr:price>345</pr:price>
 			</pr:good>
-			<pr:good>
-				<pr:producer>wre</pr:producer>
-				<pr:model>er345</pr:model>
-				<pr:date-of-issue>12-12-2001</pr:date-of-issue>
-				<pr:color>sdfsdfs</pr:color>
-				<pr:not-in-stock />
-			</pr:good>
 		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
@@ -42,11 +35,18 @@
 				<pr:price>123</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>sererterterter</pr:producer>
-				<pr:model>er343</pr:model>
-				<pr:date-of-issue>12-12-2001</pr:date-of-issue>
-				<pr:color>sdfdsfs</pr:color>
+				<pr:producer>gdfbffn</pr:producer>
+				<pr:model>df234</pr:model>
+				<pr:date-of-issue>23-12-2011</pr:date-of-issue>
+				<pr:color>fgfg</pr:color>
 				<pr:not-in-stock />
+			</pr:good>
+			<pr:good>
+				<pr:producer>sdafaf</pr:producer>
+				<pr:model>sd234</pr:model>
+				<pr:date-of-issue>12-12-2008</pr:date-of-issue>
+				<pr:color>asdfafa</pr:color>
+				<pr:price>33333</pr:price>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>
@@ -67,17 +67,17 @@
 				<pr:not-in-stock />
 			</pr:good>
 			<pr:good>
-				<pr:producer>ere</pr:producer>
-				<pr:model>er323</pr:model>
-				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>sdfds</pr:color>
-				<pr:price>34534</pr:price>
+				<pr:producer>ghg</pr:producer>
+				<pr:model>gh343</pr:model>
+				<pr:date-of-issue>12-12-2056</pr:date-of-issue>
+				<pr:color>sdf</pr:color>
+				<pr:price>4534</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>df</pr:producer>
-				<pr:model>df433</pr:model>
-				<pr:date-of-issue>12-12-2010</pr:date-of-issue>
-				<pr:color>sdf</pr:color>
+				<pr:producer>fdgdfg</pr:producer>
+				<pr:model>df453</pr:model>
+				<pr:date-of-issue>12-12-2012</pr:date-of-issue>
+				<pr:color>dfgdf</pr:color>
 				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>

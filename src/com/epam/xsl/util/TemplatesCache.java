@@ -42,15 +42,15 @@ public final class TemplatesCache {
 
 	private static TemplatesWrapper createNewEntryInCache(long lastModified,
 			String key) throws TransformerConfigurationException {
+		TemplatesWrapper templWrapper = cache.get(key);
+		// check if other thread has updated entry in a cache already
+		if (templWrapper != null &&
+				lastModified == templWrapper.lastModified) {
+			return templWrapper;
+		}
+		// if didn't, put new entry in a cache
 		lock.lock();
 		try {
-			TemplatesWrapper templWrapper = cache.get(key);
-			// check if other thread has updated entry in a cache already
-			if (templWrapper != null
-					&& lastModified == templWrapper.lastModified) {
-				return templWrapper;
-			}
-			// if didn't, put new entry in a cache
 			Templates templates = transformerFactory
 					.newTemplates(new StreamSource(key));
 			templWrapper = new TemplatesWrapper(templates, lastModified);
