@@ -44,8 +44,7 @@ public final class TemplatesCache {
 			String key) throws TransformerConfigurationException {
 		TemplatesWrapper templWrapper = cache.get(key);
 		// check if other thread has updated entry in a cache already
-		if (templWrapper != null &&
-				lastModified == templWrapper.lastModified) {
+		if (templWrapper != null && lastModified == templWrapper.lastModified) {
 			return templWrapper;
 		}
 		// if didn't, put new entry in a cache

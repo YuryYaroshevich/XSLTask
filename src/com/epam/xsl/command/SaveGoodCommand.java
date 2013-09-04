@@ -6,11 +6,10 @@ import static com.epam.xsl.constant.AppConstant.PRODUCTS_XML;
 import static com.epam.xsl.constant.AppConstant.REDIRECT_QUERY_START;
 import static com.epam.xsl.constant.AppConstant.SUBCATEGORY_NAME;
 import static com.epam.xsl.constant.AppConstant.VALIDATION_XSLT;
+import static com.epam.xsl.constant.AppConstant.VALIDATOR;
 import static com.epam.xsl.resource.PropertyGetter.getProperty;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +19,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.GoodValidator;
+import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
@@ -35,7 +35,6 @@ public final class SaveGoodCommand implements Command {
 	private static final String COLOR = "color";
 	private static final String PRICE = "price";
 	private static final String NOT_IN_STOCK = "notInStock";
-	private static final String VALIDATOR = "validator";
 
 	// if checkbox wasn't checked then notInStock sets to false
 	private static final String FALSE = "false";
@@ -57,16 +56,18 @@ public final class SaveGoodCommand implements Command {
 			try {
 				xml = new File(getProperty(PRODUCTS_XML));
 				lastModified = xml.lastModified();
-				resultingInfo = resultOfTransformation(transf);
+				resultingInfo = ProductsXmlIO.transformAndGetResult(transf,
+						getProperty(PRODUCTS_XML));
 			} finally {
 				Synchronizer.getReadLock().unlock();
 			}
-			
+
 			// check the result of transformation
 			if (validator.isGoodValid()) {
-				// Validation passed; list of goods with new good.
-				writeToXML(resultingInfo, xml, lastModified, transf);
-				listOfGoodsToPage(req, resp);
+				// Validation passed; list of goods with new good
+				ProductsXmlIO.writeToXML(resultingInfo,
+						getProperty(PRODUCTS_XML), lastModified, transf);
+				viewListOfGoods(req, resp);
 			} else {
 				// Validation didn't passed; form with error messages
 				resp.getWriter().append(resultingInfo);
@@ -74,7 +75,7 @@ public final class SaveGoodCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
-		} 
+		}
 	}
 
 	private static GoodValidator setParametersInTransf(Transformer transf,
@@ -98,46 +99,7 @@ public final class SaveGoodCommand implements Command {
 		return validator;
 	}
 
-	private static String resultOfTransformation(Transformer transf)
-			throws Exception {
-		StringWriter stringWriter = null;
-		Synchronizer.getReadLock().lock();
-		try {
-			StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
-			stringWriter = new StringWriter();
-			StreamResult output = new StreamResult(stringWriter);
-			transf.transform(xmlSource, output);
-			return stringWriter.toString();
-		} finally {
-			Synchronizer.getReadLock().unlock();
-			if (stringWriter != null) {
-				stringWriter.close();
-			}			
-		}
-	}
-
-	private static void writeToXML(String information, File xml,
-			long lastModified, Transformer transf) throws Exception {
-		FileWriter fileWriter = null;
-		Synchronizer.getWriteLock().lock();
-		try {
-			if (lastModified != xml.lastModified()) {
-				GoodValidator validator = (GoodValidator) transf
-						.getParameter(VALIDATOR);
-				validator.reset();
-				information = resultOfTransformation(transf);
-			}
-			fileWriter = new FileWriter(xml);
-			fileWriter.append(information);
-		} finally {
-			Synchronizer.getWriteLock().unlock();
-			if (fileWriter != null) {
-				fileWriter.close();
-			}			
-		}
-	}
-
-	private static void listOfGoodsToPage(HttpServletRequest req,
+	private static void viewListOfGoods(HttpServletRequest req,
 			HttpServletResponse resp) throws Exception {
 		String categoryName = req.getParameter(CATEGORY_NAME);
 		String subcategoryName = req.getParameter(SUBCATEGORY_NAME);
