@@ -31,7 +31,7 @@
 				<pr:color>red</pr:color>
 				<pr:price>123</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>qw</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sfsfssf</pr:color><pr:not-in-stock/></pr:good></pr:subcategory>
+		<pr:good><pr:producer>qw</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sfsfssf</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>ggggggg</pr:producer><pr:model>df345</pr:model><pr:date-of-issue>11-11-2008</pr:date-of-issue><pr:color>fsdgfsdgs</pr:color><pr:price>2345</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
@@ -43,6 +43,6 @@
 				<pr:price>353</pr:price>
 			</pr:good>
 
-		</pr:subcategory>
+		<pr:good><pr:producer>dfd</pr:producer><pr:model>df343</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sdfsdf</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>qqwe</pr:producer><pr:model>we121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sfs</pr:color><pr:price>12312</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 </pr:products>
