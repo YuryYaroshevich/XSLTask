@@ -16,7 +16,16 @@ import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.TemplatesCache;
 
-public final class GoodsCommand implements Command {
+final class GoodsCommand implements Command {
+	private static final Command command = new GoodsCommand();
+
+	private GoodsCommand() {
+	}
+
+	public static Command getInstance() {
+		return command;
+	}
+
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {
@@ -34,6 +43,6 @@ public final class GoodsCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException(e);
-		} 
+		}
 	}
 }

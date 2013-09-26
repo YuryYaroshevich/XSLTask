@@ -19,25 +19,30 @@ import javax.xml.transform.stream.StreamSource;
 
 import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.GoodValidator;
+import com.epam.xsl.util.ParameterTransporter;
 import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.Synchronizer;
 import com.epam.xsl.util.TemplatesCache;
 
-public final class SaveGoodCommand implements Command {
+final class SaveGoodCommand implements Command {
 	// start of URL for redirecting
 	private static final String QUERY_START = getProperty(REDIRECT_QUERY_START);
 
 	// parameter names for taking values from request and setting values in
 	// transformer
-	private static final String PRODUCER = "producer";
-	private static final String MODEL = "model";
-	private static final String DATE_OF_ISSUE = "dateOfIssue";
-	private static final String COLOR = "color";
-	private static final String PRICE = "price";
 	private static final String NOT_IN_STOCK = "notInStock";
 
 	// if checkbox wasn't checked then notInStock sets to false
 	private static final String FALSE = "false";
+
+	private static final Command command = new SaveGoodCommand();
+
+	private SaveGoodCommand() {
+	}
+
+	public static Command getInstance() {
+		return command;
+	}
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
@@ -82,14 +87,7 @@ public final class SaveGoodCommand implements Command {
 			HttpServletRequest req) {
 		GoodValidator validator = new GoodValidator();
 		transf.setParameter(VALIDATOR, validator);
-		transf.setParameter(CATEGORY_NAME, req.getParameter(CATEGORY_NAME));
-		transf.setParameter(SUBCATEGORY_NAME,
-				req.getParameter(SUBCATEGORY_NAME));
-		transf.setParameter(PRODUCER, req.getParameter(PRODUCER));
-		transf.setParameter(MODEL, req.getParameter(MODEL));
-		transf.setParameter(DATE_OF_ISSUE, req.getParameter(DATE_OF_ISSUE));
-		transf.setParameter(COLOR, req.getParameter(COLOR));
-		transf.setParameter(PRICE, req.getParameter(PRICE));
+		ParameterTransporter.transportFromRequestToTransformer(req, transf);
 		String notInStock = req.getParameter(NOT_IN_STOCK);
 		if (notInStock == null) {
 			notInStock = FALSE;

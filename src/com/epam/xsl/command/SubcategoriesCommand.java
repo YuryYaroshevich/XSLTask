@@ -15,7 +15,16 @@ import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.TemplatesCache;
 
-public final class SubcategoriesCommand implements Command {
+final class SubcategoriesCommand implements Command {
+	private static final Command command = new SubcategoriesCommand();
+	
+	private SubcategoriesCommand() {
+	}
+	
+	public static Command getInstance() {
+		return command;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {

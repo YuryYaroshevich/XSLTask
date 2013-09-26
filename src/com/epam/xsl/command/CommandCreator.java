@@ -1,18 +1,14 @@
-package com.epam.xsl.command.factory;
+package com.epam.xsl.command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.epam.xsl.command.AddGoodCommand;
-import com.epam.xsl.command.CancelCommand;
-import com.epam.xsl.command.CategoriesCommand;
-import com.epam.xsl.command.Command;
-import com.epam.xsl.command.GoodsCommand;
-import com.epam.xsl.command.SaveGoodCommand;
-import com.epam.xsl.command.SubcategoriesCommand;
-
-
 public final class CommandCreator {
 	private static final String ATTR_NAME_COMMAND = "command";
+	
+	private static enum CommandEnum {
+		CATEGORIES_COMMAND, SUBCATEGORIES, GOODS, ADD_GOOD,
+		SAVE_GOOD, CANCEL
+	}
 
 	private CommandCreator() {
 	}
@@ -22,17 +18,17 @@ public final class CommandCreator {
 				.getParameter(ATTR_NAME_COMMAND));
 		switch (commandEnum) {
 		case SUBCATEGORIES:
-			return new SubcategoriesCommand();
+			return SubcategoriesCommand.getInstance();
 		case GOODS:
-			return new GoodsCommand();
+			return GoodsCommand.getInstance();
 		case ADD_GOOD:
-			return new AddGoodCommand();
+			return AddGoodCommand.getInstance();
 		case SAVE_GOOD: 
-			return new SaveGoodCommand();
+			return SaveGoodCommand.getInstance();
 		case CANCEL: 
-			return new CancelCommand();
+			return CancelCommand.getInstance();
 		default:
-			return new CategoriesCommand();
+			return CategoriesCommand.getInstance();
 		}
 	}
 

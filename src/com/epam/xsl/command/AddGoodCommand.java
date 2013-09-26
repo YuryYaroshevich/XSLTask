@@ -17,7 +17,16 @@ import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.TemplatesCache;
 
-public final class AddGoodCommand implements Command {
+final class AddGoodCommand implements Command {
+	private static final Command command = new AddGoodCommand();
+	
+	private AddGoodCommand() {
+	}
+	
+	public static Command getInstance() {
+		return command;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {

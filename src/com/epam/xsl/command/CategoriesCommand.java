@@ -14,7 +14,16 @@ import com.epam.xsl.command.exception.CommandException;
 import com.epam.xsl.util.ProductsXmlIO;
 import com.epam.xsl.util.TemplatesCache;
 
-public final class CategoriesCommand implements Command {
+final class CategoriesCommand implements Command {
+	private static final Command command = new CategoriesCommand();
+	
+	private CategoriesCommand() {
+	}
+	
+	public static Command getInstance() {
+		return command;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws CommandException {

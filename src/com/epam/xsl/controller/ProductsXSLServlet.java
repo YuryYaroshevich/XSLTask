@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.epam.xsl.command.Command;
+import com.epam.xsl.command.CommandCreator;
 import com.epam.xsl.command.exception.CommandException;
-import com.epam.xsl.command.factory.CommandCreator;
 
 public final class ProductsXSLServlet extends HttpServlet {
 	private static final long serialVersionUID = 7688907932488576018L;
